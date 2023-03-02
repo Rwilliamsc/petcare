@@ -1,8 +1,10 @@
-package br.edu.infnet.petcare.model;
+package br.edu.infnet.petcare.model.domain;
 
 public class User extends Person{
     private String email    = "";
     private String password = "";
+
+    public User() {}
     public User(String name, String cpf, String email, String password) {
         super(name, cpf);
         this.email = email;
@@ -29,5 +31,15 @@ public class User extends Person{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+
+        return String.format(
+                "Usuário:  %s \n Email: %s \n Senha: %s.",
+                super.getName(),
+                email,
+                password);
     }
 }

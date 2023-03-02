@@ -10,7 +10,7 @@
 
     <h2>Menu</h2>
 
-    <h2>Cadastro de <a href="/usuario">Usuário</a></h2>
+    <h2>Cadastro um novo <a href="/user">Usuário</a></h2>
 
 </body>
 </html>

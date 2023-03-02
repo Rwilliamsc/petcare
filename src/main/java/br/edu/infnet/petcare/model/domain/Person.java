@@ -1,4 +1,4 @@
-package br.edu.infnet.petcare.model;
+package br.edu.infnet.petcare.model.domain;
 
 public abstract class Person {
 
