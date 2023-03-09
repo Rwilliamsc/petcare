@@ -7,6 +7,7 @@ public abstract class Person {
     private String nickName     = "";
     private String cpf          = "";
     private String status       = "";
+    private int id              = 0;
 
     public Person() {}
 
@@ -63,10 +64,18 @@ public abstract class Person {
     public void setStatus(String status) {
         this.status = status;
     }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public StringBuilder getFullName() {
         StringBuilder fullName = new StringBuilder();
         fullName.append(this.getName());
+        fullName.append(" ");
         fullName.append(this.getFamilyName());
 
         return fullName;

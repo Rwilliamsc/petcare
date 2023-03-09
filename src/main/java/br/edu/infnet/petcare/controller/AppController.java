@@ -12,6 +12,6 @@ public class AppController {
     }
     @GetMapping(value = "/home")
     public String homeScreen() {
-        return "index";
+        return "home/home";
     }
 }

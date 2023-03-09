@@ -45,7 +45,7 @@ public class User extends Person{
     public String toString() {
 
         return String.format(
-                "Usuário:  %s \n Email: %s \n Senha: %s.",
+                "Usuário:  %s \n Email: %s \n Senha: %s",
                 super.getName(),
                 email,
                 password);

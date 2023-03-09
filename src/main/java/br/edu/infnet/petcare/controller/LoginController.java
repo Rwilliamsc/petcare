@@ -21,7 +21,7 @@ public class LoginController {
         User user = new User(email, password);
         System.out.println(user);
         if (AuthRepository.auth(user)) {
-            return "index";
+            return "redirect:home";
         }
         return "login";
     }

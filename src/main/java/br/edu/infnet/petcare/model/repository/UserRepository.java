@@ -1,25 +1,42 @@
 package br.edu.infnet.petcare.model.repository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import br.edu.infnet.petcare.model.domain.User;
 import org.springframework.stereotype.Repository;
+
 @Repository
 public class UserRepository {
-    static private List<User> userList = new ArrayList<User>();
+    
+    private static Map<Integer, User> databaseUsers = new HashMap<Integer, User>();
+
 
     public static boolean create(User user) {
         try {
-            userList.add(user);
+            user.setId(nextId());
+            user.setStatus("ACTIVE");
+            databaseUsers.put(user.getId(), user);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
 
-    public static List<User> list() {
-        return userList;
+    public static Collection<User> list() {
+        return databaseUsers.values();
+    }
+    
+    public static User getById(int key) {
+    	return databaseUsers.get(key);
+    }
+    
+    public static User removeUser(int key) {
+    	return databaseUsers.remove(key);
+    }
+
+    public static int nextId() {
+        return databaseUsers.size() + 1;
     }
 }

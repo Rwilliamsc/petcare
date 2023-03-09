@@ -1,16 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Sales Product</title>
-</head>
-<body>
+Collection<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+        <!DOCTYPE html>
+        <html>
 
-    <h2>Menu</h2>
+        <head>
+            <meta charset="UTF-8">
+            <title>Sales Product</title>
+        </head>
 
-    <h2>Cadastro um novo <a href="/user">Usuário</a></h2>
+        <body>
 
-</body>
-</html>
+            <h2>Menu</h2>
+
+            <h2>Cadastro um novo <a href="/user">Usuário</a></h2>
+
+        </body>
+
+        </html>
