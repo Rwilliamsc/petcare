@@ -8,7 +8,7 @@ public class AppController {
 
     @GetMapping(value = "/")
     public String initScreen() {
-        return "redirect:/login";
+        return "index";
     }
     @GetMapping(value = "/home")
     public String homeScreen() {

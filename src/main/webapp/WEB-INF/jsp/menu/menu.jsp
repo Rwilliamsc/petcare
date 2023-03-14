@@ -389,10 +389,12 @@
             <div class="profile-content">
               <img src="https://randomuser.me/api/portraits/men/63.jpg" alt="profileImg">
             </div>
-            <div class="name-job">
-              <div class="profile_name">Logout</div>
-            </div>
-            <i class='bx bx-log-out'></i>
+            <a href="/">
+              <div class="name-job">
+                <div class="profile_name">Logout</div>
+              </div>
+              <i class='bx bx-log-out'></i>
+            </a>
           </div>
         </li>
       </ul>
