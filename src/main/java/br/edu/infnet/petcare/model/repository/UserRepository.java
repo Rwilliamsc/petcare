@@ -10,14 +10,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserRepository {
     
-    private static Map<Integer, User> databaseUsers = new HashMap<Integer, User>();
+    private static Map<Integer, User> database = new HashMap<Integer, User>();
 
 
     public static boolean create(User user) {
         try {
             user.setId(nextId());
             user.setStatus("ACTIVE");
-            databaseUsers.put(user.getId(), user);
+            database.put(user.getId(), user);
             return true;
         } catch (Exception e) {
             return false;
@@ -25,18 +25,24 @@ public class UserRepository {
     }
 
     public static Collection<User> list() {
-        return databaseUsers.values();
+        return database.values();
     }
     
     public static User getById(int key) {
-    	return databaseUsers.get(key);
+    	return database.get(key);
     }
     
-    public static User removeUser(int key) {
-    	return databaseUsers.remove(key);
+    public static User update(int key, User user) {
+    	User itemEdit = database.get(key);
+        itemEdit = user;
+        return itemEdit;
+    }
+
+    public static User remove(int key) {
+    	return database.remove(key);
     }
 
     public static int nextId() {
-        return databaseUsers.size() + 1;
+        return database.size() + 1;
     }
 }
