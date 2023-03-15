@@ -75,10 +75,10 @@
                         </td>
                         <td>
                           <div class="d-flex align-items-center">
-                            <a style="color: #3b5998;" href="#!" role="button" class="me-3">
+                            <a style="color: #3b5998;" href="/user/${user.id}/edit" role="button" class="me-3">
                               <i class="fas fa-pencil-alt"></i>
                             </a>
-                            <a style="color: #dd4b39;" href="#!" role="button">
+                            <a style="color: #dd4b39;" href="/user/${user.id}/remove" role="button">
                               <i class="far fa-trash-alt"></i>
                             </a>
                           </div>

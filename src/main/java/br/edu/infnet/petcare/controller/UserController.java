@@ -41,13 +41,13 @@ public class UserController {
     public String edit(User user) {
         UserRepository.update(user.getId(), user);
 
-        return "redirect:/user/list";
+        return "redirect:/user";
     }
 
     @GetMapping(value = "/user/{id}/remove")
     public String remove(@PathVariable Integer id) {
         UserRepository.remove(id);
-        return "redirect:/user/list";
+        return "redirect:/user";
     }
 
 }

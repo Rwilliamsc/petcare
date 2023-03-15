@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class PetsController {
+public class PetController {
 
     @GetMapping("/pet")
     public String listScreen(Model model) {
