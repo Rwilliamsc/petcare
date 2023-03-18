@@ -56,7 +56,7 @@
                       <tr>
                         <td>
                           <div class="d-flex align-items-center">
-                            <img src="https://mdbootstrap.com/img/new/avatars/${user.id}.jpg" alt=""
+                            <img src="https://randomuser.me/api/portraits/men/${sessionUser.id}.jpg" alt=""
                               style="width: 45px; height: 45px" class="rounded-circle" />
                             <div class="ms-3">
                               <p class="fw-bold mb-1">${user.getFullName()}</p>

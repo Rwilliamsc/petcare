@@ -4,10 +4,23 @@
         <html>
 
         <head>
-            <meta charset="ISO-8859-1" lang="pt-BR">
+            <meta charset="utf-8" lang="pt-BR">
             <title>PetCare</title>
 
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+                integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+                crossorigin="anonymous" />
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+                crossorigin="anonymous"></script>
+            <!-- Font Awesome -->
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+            <!-- Google Fonts -->
+            <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+            <!-- MDB -->
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+            <script type="text/javascript"
+                src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
 
 
             <style>
@@ -24,17 +37,9 @@
                     background-repeat: no-repeat;
                 }
 
-                .navbar-header {
-                    margin-right: 100px;
-                }
-
-                .navbar-header a {
-                    color: #fff;
-                }
-
                 .container {
                     width: 1200px;
-                    height: 100px;
+                    height: 80px;
                     margin: auto;
                     display: flex;
                     justify-content: space-between;
@@ -49,14 +54,13 @@
                     cursor: pointer;
                 }
 
-                .item-menu ul {
+                .container ul {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    margin-top: 15px;
                 }
 
-                .item-menu ul li {
+                .container ul li {
                     font-family: arial;
                     color: #fff;
                     List-style: none;
@@ -66,11 +70,11 @@
                     transition: 0.5s;
                 }
 
-                .item-menu ul li:first-child {
+                .container ul li:first-child {
                     color: #3e8ded;
                 }
 
-                .item-menu ul li:hover {
+                .container ul li:hover {
                     color: #3e8ded;
                 }
 
@@ -78,7 +82,7 @@
                     text-decoration: none;
                 }
 
-                .item-menu ul li a {
+                .container ul li a {
                     font-family: arial;
                     color: #fff;
                     List-style: none;
@@ -88,14 +92,31 @@
                     transition: 0.5s;
                 }
 
-                .item-menu ul li a:hover {
+                .container ul li a:hover {
                     color: #3e8ded;
-                    text-decoration: none;
                 }
 
-                .item-menu ul li a:active {
+                .container ul li a:active {
                     color: #fff;
-                    text-decoration: none;
+                }
+
+                .container .btn {
+                    width: 200px;
+                    height: 50px;
+                    border-radius: 10px;
+                    font-size: 18px;
+                    border: none;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #fff;
+                    color: #3e8ded;
+                    transition: 0.5s;
+                }
+
+                .container .btn:hover {
+                    background-color: #3e8ded;
+                    color: #fff;
                 }
 
                 .content {
@@ -143,47 +164,27 @@
         </head>
 
         <body>
+
             <div class="container-fluid">
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="/">PET CARE</a>
-                    </div>
-                    <div class="item-menu">
-                        <ul class="navbar-nav">
-                            <li class="active"><a href="/home">Inicio</a></li>
-                            <c:if test="${not empty sessionUser}">
-                                <li><a href="#">Agendamento</a></li>
-                                <li><a href="#">Consulta</a></li>
-                                <li><a href="#">Cirurgia</a></li>
-                                <li><a href="#">Exame</a></li>
-                                <li><a href="/user">Usuario</a></li>
-                            </c:if>
-                        </ul>
-
-                        <ul class="navbar-nav navbar-right">
-                            <c:if test="${empty sessionUser}">
-                                <li><a href="/user/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
-                                </li>
-                                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                            </c:if>
-
-                            <c:if test="${not empty sessionUser}">
-                                <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout,
-                                        ${sessionUser.name}</a></li>
-                            </c:if>
-                        </ul>
-                    </div>
-                </nav>
                 <div class="container">
-                    <div class="content">
-                        <h1>Cuidando sempre <br> do seu Pet</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.<br>
-                            Dolores accusamus, pariatur dolorum quidem.
-                        </p>
-                        <button class="btn"><i class="fa fa-phone" aria-hidden="true"></i>(21)1234-7171</button>
-                    </div>
+                    <h2>Pet Care</h2>
+                    <ul>
+                        <li>INICIO</li>
+                        <li>SOBRE</li>
+                        <li>SERVICOS</li>
+                        <li><a href="/login">LOGIN/SING UP</a></li>
+                    </ul>
+                    <button class="btn"><i class="fa fa-phone" aria-hidden="true"></i>(21)1234-7171</button>
+                </div>
+                <div class="content">
+                    <h1>Cuidando sempre <br> do seu Pet</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.<br>
+                        Dolores accusamus, pariatur dolorum quidem.
+                    </p>
+                    <button class="btn"><i class="fa fa-phone" aria-hidden="true"></i>(21)1234-7171</button>
                 </div>
             </div>
+
         </body>
 
         </html>

@@ -29,7 +29,7 @@ public class LoginController {
 
         if (userAuth != null) {
             model.addAttribute("sessionUser", userAuth);
-            return "redirect:home";
+            return "redirect:/";
         }
         return "login";
     }

@@ -31,7 +31,7 @@
         width: 78px;
       }
 
-      .sidebar .logo-details {
+      .sidebar .logo-details a {
         height: 60px;
         width: 100%;
         display: flex;
@@ -241,7 +241,7 @@
       .sidebar .profile-details .profile_name,
       .sidebar .profile-details .job {
         color: #fff;
-        font-size: 18px;
+        font-size: 12px;
         font-weight: 500;
         white-space: nowrap;
       }
@@ -328,9 +328,11 @@
 
     <div class="sidebar close">
       <div class="logo-details">
+        <a href="/">
+          <i class='fas fa-paw fa-2x me-3'></i>
+          <span class="logo_name">PetCare</span>
+        </a>
 
-        <i class='fas fa-paw fa-2x me-3'></i>
-        <span class="logo_name">PetCare</span>
       </div>
       <ul class="nav-links">
         <li>
@@ -387,11 +389,11 @@
         <li>
           <div class="profile-details">
             <div class="profile-content">
-              <img src="https://randomuser.me/api/portraits/men/63.jpg" alt="profileImg">
+              <img src="https://randomuser.me/api/portraits/men/${sessionUser.id}.jpg" alt="profileImg">
             </div>
             <a href="/logout">
               <div class="name-job">
-                <div class="profile_name">Logout</div>
+                <div class="profile_name">${sessionUser.name} Logout</div>
               </div>
               <i class='bx bx-log-out'></i>
             </a>
