@@ -1,7 +1,9 @@
 package br.edu.infnet.petcare.controller;
 
 import br.edu.infnet.petcare.model.domain.User;
-import br.edu.infnet.petcare.model.repository.UserRepository;
+import br.edu.infnet.petcare.model.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserController {
 
+    @Autowired
+	private UserService userService;
+
     @GetMapping("/user")
     public String listScreen(Model model) {
-        model.addAttribute("users", UserRepository.list());
+        model.addAttribute("users", userService.list());
         return "user/list";
     }
 
@@ -24,7 +29,7 @@ public class UserController {
 
     @PostMapping("/user")
     public String create(User user) {
-        if (UserRepository.create(user)){
+        if (userService.create(user)){
             return "redirect:/login";
         }
         return "user/register";
@@ -32,21 +37,21 @@ public class UserController {
 
     @GetMapping(value = "/user/{id}/edit")
     public String editScreen(Model model, @PathVariable Integer id) {
-        User user = UserRepository.getById(id);
+        User user = userService.getById(id);
         model.addAttribute("user", user);
         return "user/edit";
     }
 
     @PostMapping(value = "/user/editar")
     public String edit(User user) {
-        UserRepository.update(user.getId(), user);
+        userService.update(user.getId(), user);
 
         return "redirect:/user";
     }
 
     @GetMapping(value = "/user/{id}/remove")
     public String remove(@PathVariable Integer id) {
-        UserRepository.remove(id);
+        userService.remove(id);
         return "redirect:/user";
     }
 

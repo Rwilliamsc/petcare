@@ -13,7 +13,7 @@ public class ExamRepository {
     private static Map<Integer, Exam> database = new HashMap<Integer, Exam>();
 
 
-    public static boolean create(Exam exam) {
+    public boolean create(Exam exam) {
         try {
             exam.setId(nextId());
             database.put(exam.getId(), exam);
@@ -23,25 +23,25 @@ public class ExamRepository {
         }
     }
 
-    public static Collection<Exam> list() {
+    public Collection<Exam> list() {
         return database.values();
     }
     
-    public static Exam getById(int key) {
+    public Exam getById(int key) {
         return database.get(key);
     }
 
-    public static Exam update(int key, Exam exam) {
+    public Exam update(int key, Exam exam) {
         Exam itemEdit = database.get(key);
         itemEdit = exam;
         return itemEdit;
     }
     
-    public static Exam remove(int key) {
+    public Exam remove(int key) {
     	return database.remove(key);
     }
 
-    public static int nextId() {
+    public int nextId() {
         return database.size() + 1;
     }
 }

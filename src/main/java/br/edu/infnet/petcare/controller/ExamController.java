@@ -1,7 +1,9 @@
 package br.edu.infnet.petcare.controller;
 
 import br.edu.infnet.petcare.model.domain.Exam;
-import br.edu.infnet.petcare.model.repository.ExamRepository;
+import br.edu.infnet.petcare.model.service.ExamService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ExamController {
 
+    @Autowired
+    private ExamService examService;
+
     @GetMapping("/exam")
     public String listScreen(Model model) {
-        model.addAttribute("exams", ExamRepository.list());
+        model.addAttribute("exams", examService.list());
         return "exam/list";
     }
 
@@ -24,7 +29,7 @@ public class ExamController {
 
     @PostMapping("/exam")
     public String create(Exam exam) {
-        if (ExamRepository.create(exam)){
+        if (examService.create(exam)){
            
             return "redirect:/exam/list";
         }
@@ -33,21 +38,21 @@ public class ExamController {
 
     @GetMapping(value = "/exam/{id}/edit")
     public String editScreen(Model model, @PathVariable Integer id) {
-        Exam exam = ExamRepository.getById(id);
+        Exam exam = examService.getById(id);
         model.addAttribute("exam", exam);
         return "exam/edit";
     }
 
     @PostMapping(value = "/exam/editar")
     public String edit(Exam exam) {
-        ExamRepository.update(exam.getId(), exam);
+        examService.update(exam.getId(), exam);
 
         return "redirect:/exam/list";
     }
 
     @GetMapping(value = "/exam/{id}/remove")
     public String remove(@PathVariable Integer id) {
-        ExamRepository.remove(id);
+        examService.remove(id);
         return "redirect:/exam/list";
     }
 

@@ -13,7 +13,7 @@ public class UserRepository {
     private static Map<Integer, User> database = new HashMap<Integer, User>();
 
 
-    public static boolean create(User user) {
+    public  boolean create(User user) {
         try {
             user.setId(nextId());
             user.setStatus("ACTIVE");
@@ -24,25 +24,25 @@ public class UserRepository {
         }
     }
 
-    public static Collection<User> list() {
+    public  Collection<User> list() {
         return database.values();
     }
     
-    public static User getById(int key) {
+    public  User getById(int key) {
     	return database.get(key);
     }
     
-    public static User update(int key, User user) {
+    public  User update(int key, User user) {
     	User itemEdit = database.get(key);
         itemEdit = user;
         return itemEdit;
     }
 
-    public static User remove(int key) {
+    public  User remove(int key) {
     	return database.remove(key);
     }
 
-    public static int nextId() {
+    public int nextId() {
         return database.size() + 1;
     }
 }

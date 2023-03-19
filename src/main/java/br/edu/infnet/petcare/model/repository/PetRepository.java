@@ -13,7 +13,7 @@ public class PetRepository {
     private static Map<Integer, Pet> database = new HashMap<Integer, Pet>();
 
 
-    public static boolean create(Pet pet) {
+    public boolean create(Pet pet) {
         try {
             pet.setId(nextId());
             database.put(pet.getId(), pet);
@@ -23,25 +23,25 @@ public class PetRepository {
         }
     }
 
-    public static Collection<Pet> list() {
+    public Collection<Pet> list() {
         return database.values();
     }
     
-    public static Pet getById(int key) {
+    public Pet getById(int key) {
     	return database.get(key);
     }
 
-    public static Pet update(int key, Pet pet) {
+    public Pet update(int key, Pet pet) {
         Pet itemEdit = database.get(key);
         itemEdit = pet;
         return itemEdit;
     }
     
-    public static Pet remove(int key) {
+    public Pet remove(int key) {
     	return database.remove(key);
     }
 
-    public static int nextId() {
+    public int nextId() {
         return database.size() + 1;
     }
 }

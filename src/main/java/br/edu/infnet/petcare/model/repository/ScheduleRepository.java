@@ -13,7 +13,7 @@ public class ScheduleRepository {
     private static Map<Integer, Schedule> database = new HashMap<Integer, Schedule>();
 
 
-    public static boolean create(Schedule schedule) {
+    public boolean create(Schedule schedule) {
         try {
             schedule.setId(nextId());
             database.put(schedule.getId(), schedule);
@@ -23,25 +23,25 @@ public class ScheduleRepository {
         }
     }
 
-    public static Collection<Schedule> list() {
+    public Collection<Schedule> list() {
         return database.values();
     }
     
-    public static Schedule getById(int key) {
+    public Schedule getById(int key) {
         return database.get(key);
     }
 
-    public static Schedule update(int key, Schedule schedule) {
+    public Schedule update(int key, Schedule schedule) {
         Schedule itemEdit = database.get(key);
         itemEdit = schedule;
         return itemEdit;
     }
     
-    public static Schedule remove(int key) {
+    public Schedule remove(int key) {
     	return database.remove(key);
     }
 
-    public static int nextId() {
+    public int nextId() {
         return database.size() + 1;
     }
 }

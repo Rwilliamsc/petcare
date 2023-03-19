@@ -13,7 +13,7 @@ public class SurgeryRepository {
     private static Map<Integer, Surgery> database = new HashMap<Integer, Surgery>();
 
 
-    public static boolean create(Surgery surgery) {
+    public boolean create(Surgery surgery) {
         try {
             surgery.setId(nextId());
             database.put(surgery.getId(), surgery);
@@ -23,24 +23,24 @@ public class SurgeryRepository {
         }
     }
 
-    public static Collection<Surgery> list() {
+    public Collection<Surgery> list() {
         return database.values();
     }
     
-    public static Surgery getById(int key) {
+    public Surgery getById(int key) {
         return database.get(key);
     }
 
-    public static Surgery update(int key, Surgery surgery) {
+    public Surgery update(int key, Surgery surgery) {
         Surgery itemEdit = database.get(key);
         itemEdit = surgery;
         return itemEdit;
     }
-    public static Surgery remove(int key) {
+    public Surgery remove(int key) {
         return database.remove(key);
     }
 
-    public static int nextId() {
+    public int nextId() {
         return database.size() + 1;
     }
 }
