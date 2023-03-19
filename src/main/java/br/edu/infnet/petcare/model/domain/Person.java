@@ -4,7 +4,6 @@ public abstract class Person {
 
     private String name         = "";
     private String familyName   = "";
-    private String nickName     = "";
     private String cpf          = "";
     private String status       = "";
     private int id              = 0;
@@ -16,12 +15,19 @@ public abstract class Person {
         this.cpf = cpf;
     }
 
-    public Person (String name, String familyName, String nickName, String cpf, String status) {
+    public Person (String name, String familyName, String cpf, String status) {
         this.name = name;
         this.familyName = familyName;
-        this.nickName = nickName;
         this.cpf = cpf;
         this.status = status;
+    }
+    
+    public Person (String name, String familyName, String cpf, String status, int id) {
+        this.name = name;
+        this.familyName = familyName;
+        this.cpf = cpf;
+        this.status = status;
+        this.id = id;
     }
 
     public String getName() {
@@ -38,14 +44,6 @@ public abstract class Person {
 
     public void setFamilyName(String familyName) {
         this.familyName = familyName;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
     }
 
     public String getCpf() {

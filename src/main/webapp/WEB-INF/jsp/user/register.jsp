@@ -152,3 +152,12 @@
   </body>
 
   </html>
+
+
+  <!-- div = document.getElementById("check-group")
+  div.addEventListener('change', () => {
+    const group = document.querySelectorAll(".btn-check")
+    const list = [...group]
+    const value = list.find(it => it.checked).value
+    console.log(value)
+}) -->

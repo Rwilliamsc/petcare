@@ -16,7 +16,9 @@ public class UserRepository {
     public  boolean create(User user) {
         try {
             user.setId(nextId());
-            user.setStatus("ACTIVE");
+            if (user.getStatus().isEmpty()) {
+                user.setStatus("ACTIVE");
+            }
             database.put(user.getId(), user);
             return true;
         } catch (Exception e) {
@@ -33,9 +35,8 @@ public class UserRepository {
     }
     
     public  User update(int key, User user) {
-    	User itemEdit = database.get(key);
-        itemEdit = user;
-        return itemEdit;
+    	database.replace(user.getId(), user);
+        return database.get(key);
     }
 
     public  User remove(int key) {

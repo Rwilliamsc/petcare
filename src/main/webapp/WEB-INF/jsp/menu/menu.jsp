@@ -274,7 +274,12 @@
       .home-content {
         display: flex;
         align-items: center;
-        flex-wrap: wrap;
+        /* flex-wrap: wrap; */
+      }
+
+      .bx-menu {
+        color: #11101d;
+        font-size: 35px;
       }
 
       .home-section .home-content .bx-menu,
@@ -354,6 +359,20 @@
           </ul>
         </li>
         <li>
+          <div class="iocn-link">
+            <a href="#">
+              <i class='bx bx-book-alt'></i>
+              <span class="link_name">Pacientes</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow'></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Pacientes</a></li>
+            <li><a href="#">Listar</a></li>
+            <li><a href="#">Prontuários</a></li>
+          </ul>
+        </li>
+        <li>
           <a href="#">
             <i class='bx bx-task'></i>
             <span class="link_name">Serviços</span>
@@ -372,20 +391,15 @@
           </ul>
         </li>
         <li>
-          <div class="iocn-link">
-            <a href="#">
-              <i class='bx bx-book-alt'></i>
-              <span class="link_name">Paciente</span>
-            </a>
-            <i class='bx bxs-chevron-down arrow'></i>
-          </div>
-          <ul class="sub-menu">
-            <li><a class="link_name" href="#">Pacientes</a></li>
-            <li><a href="#">Listar</a></li>
-            <li><a href="#">Prontuários</a></li>
-            <li><a href="#">Tutores</a></li>
+          <a href="#">
+            <i class='bx bx-user'></i>
+            <span class="link_name">Veterinários</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="/veterinary">Veterinários</a></li>
           </ul>
         </li>
+
         <li>
           <div class="profile-details">
             <div class="profile-content">

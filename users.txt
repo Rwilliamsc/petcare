@@ -1,0 +1,4 @@
+admin@test.com;123;Admin;;Admin;99999999999;ACTIVE;ADMINISTRATOR
+raphael@test.com;123;Raphael;Costa;Rapha;11111111111;ACTIVE;USER
+mayara@test.com;123;Mayara;Costa;May;11111111111;ACTIVE;USER
+livia@test.com;123;Livia;Areias;Lili;11111111111;INACTIVE;USER

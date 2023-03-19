@@ -27,8 +27,8 @@
       <c:import url="/WEB-INF/jsp/menu/menu.jsp" />
 
       <section class="home-section">
+        <i class='bx bx-menu'></i>
         <div class="home-content">
-          <i class='bx bx-menu'></i>
           <div class="container h-50">
             <h2>Home</h2>
             <!-- Conteudo aqui  -->

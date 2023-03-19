@@ -16,34 +16,34 @@ public class UserService {
 
   public boolean create(User user) {
    return userRepository.create(user);
-}
+  }
 
-public Collection<User> list() {
-    return userRepository.list();
-}
+  public Collection<User> list() {
+      return userRepository.list();
+  }
 
-public User getById(int key) {
-  return userRepository.getById(key);
-}
+  public User getById(int key) {
+    return userRepository.getById(key);
+  }
 
-public User update(int key, User user) {
-	 return userRepository.update(key, user);
-}
+  public User update(int key, User user) {
+    return userRepository.update(key, user);
+  }
 
-public  User remove(int key) {
-  return userRepository.remove(key);
-}
+  public  User remove(int key) {
+    return userRepository.remove(key);
+  }
 
-public User auth(User user) {
-	Collection<User> userList = userRepository.list();
+  public User auth(User user) {
+    Collection<User> userList = userRepository.list();
 
-    for (User item : userList) {
-        if (item.getEmail().equalsIgnoreCase(user.getEmail()) &&
-                item.getPassword().equals(user.getPassword())) {
-            return item;
-        }
-    }
-    return null;
-}
+      for (User item : userList) {
+          if (item.getEmail().equalsIgnoreCase(user.getEmail()) &&
+                  item.getPassword().equals(user.getPassword())) {
+              return item;
+          }
+      }
+      return null;
+  }
 
 }

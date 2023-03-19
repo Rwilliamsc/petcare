@@ -19,7 +19,7 @@
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
 
       <meta charset="UTF-8">
-      <title>Usuários</title>
+      <title>Veterinários</title>
     </head>
 
     <body>
@@ -30,64 +30,59 @@
         <div class="home-content">
           <div class="container h-50">
             <div class="row d-flex justify-content-center align-items-center h-100">
-              <h2>Usuários</h2>
+              <h2>Veterinários</h2>
               <div class="pt-1 mb-4">
-                <a class="btn btn-primary text-white" href="user/register" role="button">
+                <a class="btn btn-primary text-white" href="veterinary/register" role="button">
                   Novo
                 </a>
               </div>
-              <c:if test="${empty users}">
-                <h5>Não existem usuários cadastrados!!!</h5>
+              <c:if test="${empty veterinaries}">
+                <h5>Não existem veterinários cadastrados!!!</h5>
               </c:if>
 
-              <c:if test="${not empty users}">
+              <c:if test="${not empty veterinaries}">
                 <table class="table align-middle mb-0 bg-white">
                   <thead class="bg-light">
                     <tr>
                       <th>Name</th>
-                      <th>Apelido</th>
                       <th>CPF</th>
-                      <th>Tipo</th>
+                      <th>Telefone</th>
+                      <th>Especialidade</th>
                       <th>Status</th>
                       <th>Ação</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <c:forEach var="user" items="${users}">
+                    <c:forEach var="vet" items="${veterinaries}">
                       <tr>
                         <td>
                           <div class="d-flex align-items-center">
-                            <img src="https://randomuser.me/api/portraits/men/${user.id}.jpg" alt=""
+                            <img src="https://randomuser.me/api/portraits/women/${vet.id * 5}.jpg" alt=""
                               style="width: 45px; height: 45px" class="rounded-circle" />
                             <div class="ms-3">
-                              <p class="fw-bold mb-1">${user.getFullName()}</p>
-                              <p class="text-muted mb-0">${user.email}</p>
+                              <p class="fw-bold mb-1">${vet.getPrefix()} ${vet.getFullName()}</p>
+                              <p class="text-muted mb-0">CFMV: ${vet.cfmv}</p>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <p class="fw-normal mb-1">${user.nickName}</p>
+                          <p class="fw-normal mb-1">${vet.cpf}</p>
                         </td>
                         <td>
-                          <p class="fw-normal mb-1">${user.cpf}</p>
+                          <p class="fw-normal mb-1">${vet.phone}</p>
                         </td>
                         <td>
-                          <c:if test="${user.type == 'ADMINISTRATOR'}">
-                            <p class="fw-normal mb-1">Admin</p>
-                          </c:if>
-                          <c:if test="${user.type == 'USER'}">
-                            <p class="fw-normal mb-1">Usuário</p>
-                          </c:if>
+                          <p class="fw-normal mb-1">${vet.specialty}</p>
                         </td>
                         <td>
-                          <span class="badge badge-success rounded-pill d-inline">${user.status}</span>
+                          <span class="badge badge-success rounded-pill d-inline">${vet.status}</span>
                         </td>
                         <td>
                           <div class="d-flex align-items-center">
-                            <a style="color: #3b5998;" href="/user/${user.id}/edit" role="button" class="me-3">
+                            <a style="color: #3b5998;" href="/veterinary/${vet.id}/edit" role="button" class="me-3">
                               <i class="fas fa-pencil-alt"></i>
                             </a>
-                            <a style="color: #dd4b39;" href="/user/${user.id}/remove" role="button">
+                            <a style="color: #dd4b39;" href="/veterinary/${vet.id}/remove" role="button">
                               <i class="far fa-trash-alt"></i>
                             </a>
                           </div>

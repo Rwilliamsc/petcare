@@ -42,9 +42,12 @@ public class UserController {
         return "user/edit";
     }
 
-    @PostMapping(value = "/user/editar")
+    @PostMapping(value = "/user/edit/{id}")
     public String edit(User user) {
-        userService.update(user.getId(), user);
+        // System.out.println(id);
+    	System.out.println(user.getId());
+        User userUpdated = userService.update(user.getId(), user);
+        System.out.println(userUpdated);
 
         return "redirect:/user";
     }

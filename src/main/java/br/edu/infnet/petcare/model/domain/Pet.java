@@ -2,23 +2,22 @@ package br.edu.infnet.petcare.model.domain;
 
 public class Pet {
     private String name         = "";
-
     private String type         = "";
     private String breed        = "";
     private int age             = 0;
     private String brithDate    = "";
-    private int idGuardian      = 0;
+    private User user;
     private int id              = 0;
 
     public Pet(){}
 
-    public Pet(String name, String type, String breed, int age, String brithDate,int idGuardian){
+    public Pet(String name, String type, String breed, int age, String brithDate){
         this.name = name;
         this.type = type;
         this.breed = breed;
         this.age = age;
         this.brithDate = brithDate;
-        this.idGuardian = idGuardian;
+       
     }
 
     public String getName() {
@@ -61,12 +60,12 @@ public class Pet {
         this.brithDate = brithDate;
     }
 
-    public int getIdGuardian() {
-        return idGuardian;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdGuardian(int idGuardian) {
-        this.idGuardian = idGuardian;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getId() {
@@ -84,6 +83,6 @@ public class Pet {
                 "Nome:  %s \n tipo: %s \n Guardiao: %d",
                 this.getName(),
                 this.getType(),
-                this.getIdGuardian());
+                this.getUser().getFullName());
     }
 }
