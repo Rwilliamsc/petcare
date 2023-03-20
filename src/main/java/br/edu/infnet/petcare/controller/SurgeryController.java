@@ -26,7 +26,8 @@ public class SurgeryController {
     }
 
     @GetMapping("/surgery/register")
-    public String createScreen() {
+    public String createScreen(Model model) {
+        model.addAttribute("veterinaries", veterinaryService.list());
         return "surgery/register";
     }
 

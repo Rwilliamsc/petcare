@@ -362,7 +362,7 @@
             <li><a class="link_name" href="#">Agendamentos</a></li>
           </ul>
         </li>
-        <li>
+        <!-- <li>
           <div class="iocn-link">
             <a href="#">
               <i class='bx bx-book-alt'></i>
@@ -375,7 +375,7 @@
             <li><a href="#">Listar</a></li>
             <li><a href="#">Prontuários</a></li>
           </ul>
-        </li>
+        </li> -->
         <li>
           <div class="iocn-link">
             <a href="#">
@@ -387,7 +387,7 @@
           <ul class="sub-menu">
             <li><a class="link_name" href="#">Serviços</a></li>
             <li><a href="/appointment">Consultas</a></li>
-            <li><a href="#">Cirurgias</a></li>
+            <li><a href="/surgery">Cirurgias</a></li>
             <li><a href="/exam">Exames</a></li>
           </ul>
         </li>
@@ -402,7 +402,7 @@
         </li>
         <li>
           <a href="#">
-            <i class='bx bx-user'></i>
+            <i class="fas fa-users"></i>
             <span class="link_name">Veterinários</span>
           </a>
           <ul class="sub-menu blank">
