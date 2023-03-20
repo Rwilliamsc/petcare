@@ -32,9 +32,8 @@ public class AppointmentRepository {
     }
 
     public Appointment update(int key, Appointment appointment) {
-        Appointment itemEdit = database.get(key);
-        itemEdit = appointment;
-        return itemEdit;
+        database.replace(appointment.getId(), appointment);
+        return database.get(key);
     }
     
     public Appointment remove(int key) {

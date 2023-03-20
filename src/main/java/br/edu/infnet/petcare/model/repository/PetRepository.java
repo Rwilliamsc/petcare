@@ -32,9 +32,8 @@ public class PetRepository {
     }
 
     public Pet update(int key, Pet pet) {
-        Pet itemEdit = database.get(key);
-        itemEdit = pet;
-        return itemEdit;
+        database.replace(pet.getId(), pet);
+        return database.get(key);
     }
     
     public Pet remove(int key) {

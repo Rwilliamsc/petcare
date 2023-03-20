@@ -1,0 +1,5 @@
+Hemograma;Hemograma simples;2023-04-05;6;120
+Hemograma;Hemograma Completo;2023-04-10;6;180
+Ecocardiograma;Ecocardiograma preventivo;2023-04-02;7;130
+Eletrocardiograma;Eletrocardiograma preventivo;2023-04-02;7;150
+Radiografia;Radiografia tórax sem contraste;2023-04-02;7;150

@@ -10,21 +10,21 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.petcare.model.domain.User;
-import br.edu.infnet.petcare.model.service.UserService;
+import br.edu.infnet.petcare.model.domain.Surgery;
+import br.edu.infnet.petcare.model.service.SurgeryService;
 
-@Order(1)
+@Order(6)
 @Component
-public class UserLoader implements ApplicationRunner {
+public class SurgeryLoader implements ApplicationRunner {
   
   @Autowired
-  private UserService userService;
+  private SurgeryService surgeryService;
 
   @Override
   public void run(ApplicationArguments args) throws Exception {
 
       try {
-        String arq = "users.txt";
+        String arq = "surgeries.txt";
         
         try {
           FileReader fileR = new FileReader(arq);
@@ -37,20 +37,19 @@ public class UserLoader implements ApplicationRunner {
             
             field = line.split(";");
             
-            User user = new User(
+            Surgery surgery = new Surgery(
               field[0], 
               field[1], 
               field[2],
-              field[3],
-              field[4], 
-              field[5], 
-              field[6],
-              field[7]
+              Integer.parseInt(field[3]),
+              field[4],
+              Boolean.parseBoolean(field[5]),
+              Boolean.parseBoolean(field[6])
             );
             
-            userService.create(user);
+            surgeryService.create(surgery);
 
-            System.out.println("A inclusão do usuário "+user.getName()+" foi realizada com sucesso!!!");
+            System.out.println("A inclusão da cirurgia "+surgery.getName()+" foi realizada com sucesso!!!");
 
             line = readFile.readLine();
           }
@@ -62,7 +61,7 @@ public class UserLoader implements ApplicationRunner {
         } 
         
       } finally {
-        System.out.println("Autoloader de usuários realizado com sucesso!!!");
+        System.out.println("Autoloader de cirurgias realizado com sucesso!!!");
       }		
     
     

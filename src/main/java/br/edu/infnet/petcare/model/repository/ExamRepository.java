@@ -32,9 +32,8 @@ public class ExamRepository {
     }
 
     public Exam update(int key, Exam exam) {
-        Exam itemEdit = database.get(key);
-        itemEdit = exam;
-        return itemEdit;
+        database.replace(exam.getId(), exam);
+        return database.get(key);
     }
     
     public Exam remove(int key) {

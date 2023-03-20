@@ -58,7 +58,7 @@
                         <div class="card-body p-5 shadow-5 text-center">
                           <h2 class="fw-bold mb-5">Cadastro de Veterinário</h2>
                           <form action="/veterinary/edit/${vet.id}" method="POST">
-                            <!-- 2 column grid layout with text inputs for the first and last names -->
+
                             <div class="row">
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
@@ -75,7 +75,6 @@
                               </div>
                             </div>
 
-                            <!-- 2 column grid layout with text inputs for the CFMV and CPF -->
                             <div class="row">
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
@@ -86,14 +85,12 @@
                               </div>
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
-                                  <input type="text" id="cfmv" name="cfmv" class="form-control" value="${vet.name}" />
+                                  <input type="text" id="cfmv" name="cfmv" class="form-control" value="${vet.cfmv}" />
                                   <label class="form-label" for="cfmv">CFMV</label>
                                 </div>
                               </div>
                             </div>
 
-
-                            <!-- 2 column grid layout with text inputs for the phone and CPF -->
                             <div class="row">
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
@@ -112,8 +109,7 @@
                             </div>
 
                             <div class="row">
-                              <span>Especialidade</span>
-                              <div class="col-lg-12 mb-4">
+                              <div class="col-lg-6 mb-4">
                                 <div class="btn-group" id="check-group">
                                   <c:choose>
                                     <c:when test="${vet.specialty == 'GERAL'}">
@@ -157,6 +153,35 @@
                                     </c:otherwise>
                                   </c:choose>
                                 </div>
+                                <br />
+                                <span>Especialidade</span>
+                              </div>
+                              <div class="col-md-6 mb-4">
+                                <div class="btn-group" id="check-group">
+                                  <c:choose>
+                                    <c:when test="${vet.status == 'ACTIVE'}">
+                                      <input type="radio" class="btn-check" name="status" id="option1" value="ACTIVE"
+                                        autocomplete="off" checked />
+                                      <label class="btn btn-secondary" for="option1">ATIVO</label>
+
+                                      <input type="radio" class="btn-check" name="status" id="option2" value="INACTIVE"
+                                        autocomplete="off" />
+                                      <label class="btn btn-secondary" for="option2">INATIVO</label>
+                                    </c:when>
+
+                                    <c:otherwise>
+                                      <input type="radio" class="btn-check" name="status" id="option1" value="ACTIVE"
+                                        autocomplete="off" />
+                                      <label class="btn btn-secondary" for="option1">ATIVO</label>
+
+                                      <input type="radio" class="btn-check" name="status" id="option2" value="INACTIVE"
+                                        autocomplete="off" checked />
+                                      <label class="btn btn-secondary" for="option2">INATIVO</label>
+                                    </c:otherwise>
+                                  </c:choose>
+                                </div>
+                                <br />
+                                <span>Status</span>
                               </div>
                             </div>
 
@@ -175,10 +200,8 @@
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
-
               </section>
             </div>
           </div>

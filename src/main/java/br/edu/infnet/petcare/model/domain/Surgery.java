@@ -2,13 +2,13 @@ package br.edu.infnet.petcare.model.domain;
 
 public class Surgery extends Service{
     private String type = "SURGERY";
-    private double price = 0.00;
+    private String price = "";
 
     private boolean isCritical;
     private boolean isEmergency;
 
-    public Surgery(String name, String description, String startDate, String endDate, int idVet, double price, boolean isCritical, boolean isEmergency){
-        super(name, description, startDate, endDate, idVet);
+    public Surgery(String name, String description, String availableDate, int idVet, String price, boolean isCritical, boolean isEmergency){
+        super(name, description, availableDate, idVet);
         this.price = price;
         this.isCritical = isCritical;
         this.isEmergency = isEmergency;
@@ -23,11 +23,11 @@ public class Surgery extends Service{
         this.type = type;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

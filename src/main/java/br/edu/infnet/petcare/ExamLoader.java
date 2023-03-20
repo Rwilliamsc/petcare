@@ -10,21 +10,21 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.petcare.model.domain.User;
-import br.edu.infnet.petcare.model.service.UserService;
+import br.edu.infnet.petcare.model.domain.Exam;
+import br.edu.infnet.petcare.model.service.ExamService;
 
-@Order(1)
+@Order(5)
 @Component
-public class UserLoader implements ApplicationRunner {
+public class ExamLoader implements ApplicationRunner {
   
   @Autowired
-  private UserService userService;
+  private ExamService examService;
 
   @Override
   public void run(ApplicationArguments args) throws Exception {
 
       try {
-        String arq = "users.txt";
+        String arq = "exams.txt";
         
         try {
           FileReader fileR = new FileReader(arq);
@@ -37,20 +37,17 @@ public class UserLoader implements ApplicationRunner {
             
             field = line.split(";");
             
-            User user = new User(
+            Exam exam = new Exam(
               field[0], 
               field[1], 
               field[2],
-              field[3],
-              field[4], 
-              field[5], 
-              field[6],
-              field[7]
+              Integer.parseInt(field[3]),
+              field[4]
             );
             
-            userService.create(user);
+            examService.create(exam);
 
-            System.out.println("A inclusão do usuário "+user.getName()+" foi realizada com sucesso!!!");
+            System.out.println("A inclusão do exame "+exam.getName()+" foi realizada com sucesso!!!");
 
             line = readFile.readLine();
           }
@@ -62,7 +59,7 @@ public class UserLoader implements ApplicationRunner {
         } 
         
       } finally {
-        System.out.println("Autoloader de usuários realizado com sucesso!!!");
+        System.out.println("Autoloader de exames realizado com sucesso!!!");
       }		
     
     

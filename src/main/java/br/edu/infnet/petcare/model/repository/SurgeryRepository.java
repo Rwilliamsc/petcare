@@ -32,9 +32,8 @@ public class SurgeryRepository {
     }
 
     public Surgery update(int key, Surgery surgery) {
-        Surgery itemEdit = database.get(key);
-        itemEdit = surgery;
-        return itemEdit;
+        database.replace(surgery.getId(), surgery);
+        return database.get(key);
     }
     public Surgery remove(int key) {
         return database.remove(key);

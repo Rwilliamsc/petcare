@@ -1,0 +1,5 @@
+Clinico;Consultas de rotina;2023-04-02;2;100;NORMAL
+Nuticionita;Consultas de rotina;2023-04-02;3;100;NORMAL
+Cardiologista;Consultas de rotina;2023-04-02;1;100;NORMAL
+Ortopedista;Consultas de emergência;2023-04-02;4;250;EMERGENCY
+Clinico;Consultas de emergência;2023-04-02;5;250;EMERGENCY

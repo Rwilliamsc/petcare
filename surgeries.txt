@@ -1,0 +1,5 @@
+Castração;Cirugia de castração;2023-04-10;8;350;false;false
+Laparotomias;Laparotomias exploratórias;2023-04-10;9;350;false;false
+Cistotomia;Cistotomia de emergência;2023-04-02;9;1500;true;true
+Displasia;Displasia Coxofemoral;2023-04-25;8;500;false;false
+Luxação de patela;Correção de luxação de patela;2023-04-30;10;450;false;false

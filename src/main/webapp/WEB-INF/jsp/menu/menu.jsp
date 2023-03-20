@@ -282,6 +282,10 @@
         font-size: 35px;
       }
 
+      .home-section {
+        overflow-y: auto;
+      }
+
       .home-section .home-content .bx-menu,
       .home-section .home-content .text {
         color: #11101d;
@@ -373,12 +377,18 @@
           </ul>
         </li>
         <li>
-          <a href="#">
-            <i class='bx bx-task'></i>
-            <span class="link_name">Serviços</span>
-          </a>
-          <ul class="sub-menu blank">
+          <div class="iocn-link">
+            <a href="#">
+              <i class='bx bx-task'></i>
+              <span class="link_name">Serviços</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow'></i>
+          </div>
+          <ul class="sub-menu">
             <li><a class="link_name" href="#">Serviços</a></li>
+            <li><a href="/appointment">Consultas</a></li>
+            <li><a href="#">Cirurgias</a></li>
+            <li><a href="#">Exames</a></li>
           </ul>
         </li>
         <li>

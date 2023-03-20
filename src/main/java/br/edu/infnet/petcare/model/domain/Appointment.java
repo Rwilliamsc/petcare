@@ -2,11 +2,11 @@ package br.edu.infnet.petcare.model.domain;
 
 public class Appointment extends Service{
     private String type = "APPOINTMENT";
-    private int level = 0;
-    private double price = 0.00;
+    private String level ="";
+    private String price = "";
 
-    public Appointment(String name, String description, String startDate, String endDate, int idVet, double price,int level){
-        super(name, description, startDate, endDate, idVet);
+    public Appointment(String name, String description, String availableDate, int idVet, String price, String level){
+        super(name, description, availableDate, idVet);
         this.price = price;
         this.level = level;
 
@@ -20,19 +20,19 @@ public class Appointment extends Service{
         this.type = type;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public int getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(String level) {
         this.level = level;
     }
     @Override

@@ -10,21 +10,21 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.petcare.model.domain.User;
-import br.edu.infnet.petcare.model.service.UserService;
+import br.edu.infnet.petcare.model.domain.Pet;
+import br.edu.infnet.petcare.model.service.PetService;
 
-@Order(1)
+@Order(3)
 @Component
-public class UserLoader implements ApplicationRunner {
+public class PetLoader implements ApplicationRunner {
   
   @Autowired
-  private UserService userService;
+  private PetService petService;
 
   @Override
   public void run(ApplicationArguments args) throws Exception {
 
       try {
-        String arq = "users.txt";
+        String arq = "pets.txt";
         
         try {
           FileReader fileR = new FileReader(arq);
@@ -37,20 +37,18 @@ public class UserLoader implements ApplicationRunner {
             
             field = line.split(";");
             
-            User user = new User(
+            Pet pet = new Pet(
               field[0], 
               field[1], 
               field[2],
-              field[3],
+              Integer.parseInt(field[3]),
               field[4], 
-              field[5], 
-              field[6],
-              field[7]
+              Integer.parseInt(field[5])
             );
             
-            userService.create(user);
+            petService.create(pet);
 
-            System.out.println("A inclusão do usuário "+user.getName()+" foi realizada com sucesso!!!");
+            System.out.println("A inclusão do pet "+pet.getName()+" foi realizada com sucesso!!!");
 
             line = readFile.readLine();
           }
@@ -62,7 +60,7 @@ public class UserLoader implements ApplicationRunner {
         } 
         
       } finally {
-        System.out.println("Autoloader de usuários realizado com sucesso!!!");
+        System.out.println("Autoloader de pets realizado com sucesso!!!");
       }		
     
     

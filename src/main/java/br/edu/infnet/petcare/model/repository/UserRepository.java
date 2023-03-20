@@ -13,7 +13,7 @@ public class UserRepository {
     private static Map<Integer, User> database = new HashMap<Integer, User>();
 
 
-    public  boolean create(User user) {
+    public boolean create(User user) {
         try {
             user.setId(nextId());
             if (user.getStatus().isEmpty()) {

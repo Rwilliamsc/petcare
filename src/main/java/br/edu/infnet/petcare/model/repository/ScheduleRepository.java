@@ -32,9 +32,8 @@ public class ScheduleRepository {
     }
 
     public Schedule update(int key, Schedule schedule) {
-        Schedule itemEdit = database.get(key);
-        itemEdit = schedule;
-        return itemEdit;
+        database.replace(schedule.getId(), schedule);
+        return database.get(key);
     }
     
     public Schedule remove(int key) {

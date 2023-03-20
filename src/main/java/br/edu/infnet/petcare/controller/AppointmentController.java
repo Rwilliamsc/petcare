@@ -2,6 +2,7 @@ package br.edu.infnet.petcare.controller;
 
 import br.edu.infnet.petcare.model.domain.Appointment;
 import br.edu.infnet.petcare.model.service.AppointmentService;
+import br.edu.infnet.petcare.model.service.VeterinaryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ public class AppointmentController {
 
     @Autowired
     private AppointmentService appointmentService;
+    @Autowired
+    private VeterinaryService veterinaryService;
 
     @GetMapping("/appointment")
     public String listScreen(Model model) {
@@ -23,7 +26,8 @@ public class AppointmentController {
     }
 
     @GetMapping("/appointment/register")
-    public String createScreen() {
+    public String createScreen(Model model) {
+        model.addAttribute("veterinaries", veterinaryService.list());
         return "appointment/register";
     }
 
@@ -31,7 +35,7 @@ public class AppointmentController {
     public String create(Appointment appointment) {
         if (appointmentService.create(appointment)){
            
-            return "redirect:/appointment/list";
+            return "redirect:/appointment";
         }
         return "appointment/register";
     }
@@ -40,14 +44,18 @@ public class AppointmentController {
     public String editScreen(Model model, @PathVariable Integer id) {
         Appointment appointment = appointmentService.getById(id);
         model.addAttribute("appointment", appointment);
+        model.addAttribute("veterinaries", veterinaryService.list());
         return "appointment/edit";
     }
 
-    @PostMapping(value = "/appointment/editar")
+    @PostMapping(value = "/appointment/edit/{id}")
     public String edit(Appointment appointment) {
+        System.out.println(appointment.getId());
+        System.out.println(appointment.getName());
+        System.out.println(appointment.getLevel());
         appointmentService.update(appointment.getId(), appointment);
 
-        return "redirect:/appointment/list";
+        return "redirect:/appointment";
     }
 
     @GetMapping(value = "/appointment/{id}/remove")

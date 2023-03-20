@@ -2,10 +2,10 @@ package br.edu.infnet.petcare.model.domain;
 
 public class Exam extends Service{
     private String type = "EXAM";
-    private double price = 0.00;
+    private String price = "";
 
-    public Exam(String name,String description,String startDate, String endDate, int idVet, double price){
-        super(name, description, startDate, endDate, idVet);
+    public Exam(String name,String description,String availableDate, int idVet, String price){
+        super(name, description, availableDate, idVet);
         this.price = price;
 
     }
@@ -18,11 +18,11 @@ public class Exam extends Service{
         this.type = type;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

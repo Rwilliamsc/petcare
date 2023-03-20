@@ -4,18 +4,16 @@ package br.edu.infnet.petcare.model.domain;
 public abstract class Service {
     private String name         = "";
     private String description  = "";
-    private String startDate    = "";
-    private String endDate      = "";
+    private String availableDate    = "";
     private int idVet           = 0;
     private int id              = 0;
 
     public Service(){}
 
-    public Service (String name,String description,String startDate, String endDate, int idVet){
+    public Service (String name,String description,String availableDate, int idVet){
         this.name = name;
         this.description = description;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.availableDate = availableDate;
         this.idVet = idVet;
     }
 
@@ -35,21 +33,14 @@ public abstract class Service {
         this.description = description;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getAvailableDate() {
+        return availableDate;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setAvailableDate(String availableDate) {
+        this.availableDate = availableDate;
     }
 
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
 
     public int getIdVet() {
         return idVet;

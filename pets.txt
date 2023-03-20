@@ -1,0 +1,5 @@
+Molly;CACHORRO;Yorkshire;6;2016-11-16;3
+Mell;CACHORRO;Yorkshire;3;2019-05-10;2
+Tom;GATO;Persa;2;2020-10-08;4
+Hagata;GATO;Angorá;7;2015-03-20;4
+Tadeu;CACHORRO;Rusk;4;2018-10-10;2

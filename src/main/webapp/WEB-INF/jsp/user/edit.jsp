@@ -37,12 +37,11 @@
     <body>
       <c:import url="/WEB-INF/jsp/menu/menu.jsp" />
 
-      <section class="home-section vh-100" style=" overflow-y: auto;">
+      <section class="home-section vh-100">
         <i class='bx bx-menu'></i>
         <div class="home-content">
           <div class="container h-50">
             <div class="row d-flex justify-content-center align-items-center h-100">
-
               <section class="text-center">
                 <div class="container py-4">
                   <div class="row d-flex justify-content-center mt-n5">
@@ -56,7 +55,7 @@
                           <form action="/user/edit/${user.id}" method="POST">
                             <div class="row">
                             </div>
-                            <!-- 2 column grid layout with text inputs for the first and last names -->
+
                             <div class="row">
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
@@ -73,7 +72,6 @@
                               </div>
                             </div>
 
-                            <!-- 2 column grid layout with text inputs for the nickName and CPF -->
                             <div class="row">
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
@@ -100,7 +98,6 @@
                                 </select>
                                 <label class="form-label" for="type">Tipo</label>
                               </div>
-
 
                               <div class="col-md-6 mb-4">
                                 <div class="btn-group" id="check-group">
@@ -129,18 +126,13 @@
                                 <br />
                                 <span>Status</span>
                               </div>
-
-
                             </div>
 
-                            <!-- Email input -->
                             <div class="form-group mb-4">
                               <input type="email" id="email" name="email" class="form-control" value="${user.email}" />
                               <label class="form-label" for="email">Email</label>
                             </div>
 
-                            <!-- Password input -->
-                            <!-- 2 column grid layout with password inputs for compare password -->
                             <div class="row">
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">

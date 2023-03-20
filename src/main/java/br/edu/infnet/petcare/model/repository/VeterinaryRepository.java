@@ -13,10 +13,12 @@ public class VeterinaryRepository {
     private static Map<Integer, Veterinary> database = new HashMap<Integer, Veterinary>();
 
 
-    public  boolean create(Veterinary veterinary) {
+    public boolean create(Veterinary veterinary) {
         try {
             veterinary.setId(nextId());
-            veterinary.setStatus("ACTIVE");
+            if (veterinary.getStatus().isEmpty()) {
+                veterinary.setStatus("ACTIVE");
+            }
             database.put(veterinary.getId(), veterinary);
             return true;
         } catch (Exception e) {
@@ -24,18 +26,17 @@ public class VeterinaryRepository {
         }
     }
 
-    public  Collection<Veterinary> list() {
+    public Collection<Veterinary> list() {
         return database.values();
     }
     
-    public  Veterinary getById(int key) {
+    public Veterinary getById(int key) {
     	return database.get(key);
     }
     
-    public  Veterinary update(int key, Veterinary veterinary) {
-    	Veterinary itemEdit = database.get(key);
-        itemEdit = veterinary;
-        return itemEdit;
+    public Veterinary update(int key, Veterinary veterinary) {
+    	database.replace(veterinary.getId(), veterinary);
+        return database.get(key);
     }
 
     public  Veterinary remove(int key) {
