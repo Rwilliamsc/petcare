@@ -1,6 +1,7 @@
 package br.edu.infnet.petcare.controller;
 
 import br.edu.infnet.petcare.model.domain.User;
+import br.edu.infnet.petcare.model.service.PetService;
 import br.edu.infnet.petcare.model.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,6 +16,8 @@ public class UserController {
 
     @Autowired
 	private UserService userService;
+    @Autowired
+	private PetService petService;
 
     @GetMapping("/user")
     public String listScreen(Model model) {
@@ -25,6 +28,12 @@ public class UserController {
     @GetMapping("/user/register")
     public String createScreen() {
         return "user/register";
+    }
+    @GetMapping("/user/register/{id}/pet")
+    public String createPetScreen(Model model,@PathVariable Integer id) {
+        User user = userService.getById(id);
+        model.addAttribute("user", user);
+        return "pet/register";
     }
 
     @PostMapping("/user")
@@ -39,16 +48,13 @@ public class UserController {
     public String editScreen(Model model, @PathVariable Integer id) {
         User user = userService.getById(id);
         model.addAttribute("user", user);
+        model.addAttribute("pets", petService.getByUserId(user.getId()));
         return "user/edit";
     }
 
     @PostMapping(value = "/user/edit/{id}")
     public String edit(User user) {
-        // System.out.println(id);
-    	System.out.println(user.getId());
-        User userUpdated = userService.update(user.getId(), user);
-        System.out.println(userUpdated);
-
+        userService.update(user.getId(), user);
         return "redirect:/user";
     }
 

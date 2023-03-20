@@ -57,18 +57,19 @@
             ">
                         <div class="card-body p-5 shadow-5 text-center">
                           <h2 class="fw-bold mb-5">Cadastro de Veterinário</h2>
-                          <form action="/veterinary" method="POST">
+                          <form action="/veterinary/edit/${vet.id}" method="POST">
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <div class="row">
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
-                                  <input type="text" id="name" name="name" class="form-control" />
+                                  <input type="text" id="name" name="name" class="form-control" value="${vet.name}" />
                                   <label class="form-label" for="name">Nome</label>
                                 </div>
                               </div>
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
-                                  <input type="text" id="familyName" name="familyName" class="form-control" />
+                                  <input type="text" id="familyName" name="familyName" class="form-control"
+                                    value="${vet.familyName}" />
                                   <label class="form-label" for="familyName">Sobrenome</label>
                                 </div>
                               </div>
@@ -79,13 +80,13 @@
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
                                   <input type="text" id="cpf" name="cpf" class="form-control"
-                                    placeholder="999.999.999-99" />
+                                    placeholder="999.999.999-99" value="${vet.cpf}" />
                                   <label class="form-label" for="cpf">CPF</label>
                                 </div>
                               </div>
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
-                                  <input type="text" id="cfmv" name="cfmv" class="form-control" />
+                                  <input type="text" id="cfmv" name="cfmv" class="form-control" value="${vet.name}" />
                                   <label class="form-label" for="cfmv">CFMV</label>
                                 </div>
                               </div>
@@ -97,13 +98,14 @@
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
                                   <input type="tel" id="phone" name="phone" class="form-control" mask="(99) 99999-9999"
-                                    placeholder="(99)99999-9999" />
+                                    placeholder="(99)99999-9999" value="${vet.phone}" />
                                   <label class="form-label" for="phone">Celular</label>
                                 </div>
                               </div>
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
-                                  <input type="text" id="prefix" name="prefix" class="form-control" />
+                                  <input type="text" id="prefix" name="prefix" class="form-control"
+                                    value="${vet.prefix}" />
                                   <label class="form-label" for="prefix">Prefixo</label>
                                 </div>
                               </div>
@@ -113,17 +115,47 @@
                               <span>Especialidade</span>
                               <div class="col-lg-12 mb-4">
                                 <div class="btn-group" id="check-group">
-                                  <input type="radio" class="btn-check" name="specialty" id="option1" value="GERAL"
-                                    autocomplete="off" checked />
-                                  <label class="btn btn-secondary" for="option1">Geral</label>
+                                  <c:choose>
+                                    <c:when test="${vet.specialty == 'GERAL'}">
+                                      <input type="radio" class="btn-check" name="specialty" id="option1" value="GERAL"
+                                        autocomplete="off" checked />
+                                      <label class="btn btn-secondary" for="option1">Geral</label>
 
-                                  <input type="radio" class="btn-check" name="specialty" id="option2" value="LAB"
-                                    autocomplete="off" />
-                                  <label class="btn btn-secondary" for="option2">Laboratório</label>
+                                      <input type="radio" class="btn-check" name="specialty" id="option2" value="LAB"
+                                        autocomplete="off" />
+                                      <label class="btn btn-secondary" for="option2">Laboratório</label>
 
-                                  <input type="radio" class="btn-check" name="specialty" id="option3" value="CIRURGIA"
-                                    autocomplete="off" />
-                                  <label class="btn btn-secondary" for="option3">Cirurgia</label>
+                                      <input type="radio" class="btn-check" name="specialty" id="option3"
+                                        value="CIRURGIA" autocomplete="off" />
+                                      <label class="btn btn-secondary" for="option3">Cirurgia</label>
+                                    </c:when>
+                                    <c:when test="${vet.specialty == 'LAB'}">
+                                      <input type="radio" class="btn-check" name="specialty" id="option1" value="GERAL"
+                                        autocomplete="off" />
+                                      <label class="btn btn-secondary" for="option1">Geral</label>
+
+                                      <input type="radio" class="btn-check" name="specialty" id="option2" value="LAB"
+                                        autocomplete="off" checked />
+                                      <label class="btn btn-secondary" for="option2">Laboratório</label>
+
+                                      <input type="radio" class="btn-check" name="specialty" id="option3"
+                                        value="CIRURGIA" autocomplete="off" />
+                                      <label class="btn btn-secondary" for="option3">Cirurgia</label>
+                                    </c:when>
+                                    <c:otherwise>
+                                      <input type="radio" class="btn-check" name="specialty" id="option1" value="GERAL"
+                                        autocomplete="off" />
+                                      <label class="btn btn-secondary" for="option1">Geral</label>
+
+                                      <input type="radio" class="btn-check" name="specialty" id="option2" value="LAB"
+                                        autocomplete="off" />
+                                      <label class="btn btn-secondary" for="option2">Laboratório</label>
+
+                                      <input type="radio" class="btn-check" name="specialty" id="option3"
+                                        value="CIRURGIA" autocomplete="off" checked />
+                                      <label class="btn btn-secondary" for="option3">Cirurgia</label>
+                                    </c:otherwise>
+                                  </c:choose>
                                 </div>
                               </div>
                             </div>
@@ -143,11 +175,6 @@
                         </div>
                       </div>
                     </div>
-                    <!-- <div class="col-lg-6 mb-5 mb-lg-0">
-                      <img style=" object-fit: cover; height: 600px;"
-                        src="https://images.unsplash.com/photo-1654919638951-87361390c91a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                        class="w-100 rounded-4 shadow-4" alt="" />
-                    </div> -->
 
                   </div>
                 </div>

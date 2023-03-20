@@ -5,7 +5,7 @@
 
     <head>
       <meta charset="UTF-8">
-      <title>Cadastro de Veterinário</title>
+      <title>Cadastro de Pets</title>
 
       <!-- BootsTrap -->
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -56,9 +56,9 @@
             backdrop-filter: blur(30px);
             ">
                         <div class="card-body p-5 shadow-5 text-center">
-                          <h2 class="fw-bold mb-5">Cadastro de Veterinário</h2>
-                          <form action="/veterinary" method="POST">
-                            <!-- 2 column grid layout with text inputs for the first and last names -->
+                          <h2 class="fw-bold mb-5">Cadastro de Pets</h2>
+                          <form action="/pet" method="POST">
+
                             <div class="row">
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
@@ -67,9 +67,26 @@
                                 </div>
                               </div>
                               <div class="col-md-6 mb-4">
+                                <div class="btn-group" id="check-group">
+                                  <input type="radio" class="btn-check" name="type" id="option1" value="GATO"
+                                    autocomplete="off" checked />
+                                  <label class="btn btn-secondary" for="option1">Gato</label>
+
+                                  <input type="radio" class="btn-check" name="type" id="option2" value="CACHORRO"
+                                    autocomplete="off" />
+                                  <label class="btn btn-secondary" for="option2">Cachorro</label>
+                                </div>
+                                <br />
+                                <span>Tipo</span>
+                              </div>
+                            </div>
+
+                            <div class="row">
+
+                              <div class="col-md-6 mb-4">
                                 <div class="form-group">
-                                  <input type="text" id="familyName" name="familyName" class="form-control" />
-                                  <label class="form-label" for="familyName">Sobrenome</label>
+                                  <input type="text" id="breed" name="breed" class="form-control" />
+                                  <label class="form-label" for="breed">Raça</label>
                                 </div>
                               </div>
                             </div>
@@ -78,57 +95,28 @@
                             <div class="row">
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
-                                  <input type="text" id="cpf" name="cpf" class="form-control"
-                                    placeholder="999.999.999-99" />
-                                  <label class="form-label" for="cpf">CPF</label>
+                                  <input type="number" id="age" name="age" class="form-control" />
+                                  <label class="form-label" for="age">Idade</label>
                                 </div>
                               </div>
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
-                                  <input type="text" id="cfmv" name="cfmv" class="form-control" />
-                                  <label class="form-label" for="cfmv">CFMV</label>
+                                  <input type="date" id="brithDate" name="brithDate" class="form-control" />
+                                  <label class="form-label" for="brithDate">Data Nascimento</label>
                                 </div>
                               </div>
                             </div>
-
 
                             <!-- 2 column grid layout with text inputs for the phone and CPF -->
                             <div class="row">
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
-                                  <input type="tel" id="phone" name="phone" class="form-control" mask="(99) 99999-9999"
-                                    placeholder="(99)99999-9999" />
-                                  <label class="form-label" for="phone">Celular</label>
-                                </div>
-                              </div>
-                              <div class="col-md-6 mb-4">
-                                <div class="form-group">
-                                  <input type="text" id="prefix" name="prefix" class="form-control" />
-                                  <label class="form-label" for="prefix">Prefixo</label>
+                                  <input type="number" id="userId" name="userId" class="form-control" value="${user.id}"
+                                    hidden />
+                                  <label class="form-label" for="userId" hidden></label>
                                 </div>
                               </div>
                             </div>
-
-                            <div class="row">
-                              <span>Especialidade</span>
-                              <div class="col-lg-12 mb-4">
-                                <div class="btn-group" id="check-group">
-                                  <input type="radio" class="btn-check" name="specialty" id="option1" value="GERAL"
-                                    autocomplete="off" checked />
-                                  <label class="btn btn-secondary" for="option1">Geral</label>
-
-                                  <input type="radio" class="btn-check" name="specialty" id="option2" value="LAB"
-                                    autocomplete="off" />
-                                  <label class="btn btn-secondary" for="option2">Laboratório</label>
-
-                                  <input type="radio" class="btn-check" name="specialty" id="option3" value="CIRURGIA"
-                                    autocomplete="off" />
-                                  <label class="btn btn-secondary" for="option3">Cirurgia</label>
-                                </div>
-                              </div>
-                            </div>
-
-
                             <!-- Submit button -->
                             <div class="row">
                               <button type="submit" class="btn btn-primary btn-block mb-4">
@@ -137,7 +125,7 @@
                             </div>
                             <!-- Cancel -->
                             <div class="row">
-                              <a class="small text-muted" href="/veterinary">Cancelar e voltar</a>
+                              <a class="small text-muted" href="/user/${user.id}/edit">Cancelar e voltar</a>
                             </div>
                           </form>
                         </div>

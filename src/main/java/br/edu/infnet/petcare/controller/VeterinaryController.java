@@ -38,14 +38,13 @@ public class VeterinaryController {
     @GetMapping(value = "/veterinary/{id}/edit")
     public String editScreen(Model model, @PathVariable Integer id) {
         Veterinary veterinary = veterinaryService.getById(id);
-        model.addAttribute("veterinary", veterinary);
+        model.addAttribute("vet", veterinary);
         return "veterinary/edit";
     }
 
-    @PostMapping(value = "/veterinary/editar")
+    @PostMapping(value = "/veterinary/edit/{id}")
     public String edit(Veterinary veterinary) {
         veterinaryService.update(veterinary.getId(), veterinary);
-
         return "redirect:/veterinary";
     }
 

@@ -164,71 +164,72 @@
                                 Atualizar
                               </button>
                             </div>
-
-                            <hr />
-
-                            <c:if test="${empty pets}">
-                              <h5>Não existem pets cadastrados para este usuário!!!</h5>
-                            </c:if>
-                            <div class="pt-1 mb-4">
-                              <a class="btn btn-primary text-white" href="pet/register" role="button">
-                                Adicionar Pet
-                              </a>
-                            </div>
-                            <c:if test="${not empty pets}">
-                              <table class="table align-middle mb-0 bg-white">
-                                <thead class="bg-light">
-                                  <tr>
-                                    <th>Nome</th>
-                                    <th>Tipo</th>
-                                    <th>Raça</th>
-                                    <th>Idade</th>
-                                    <th>Data Nasc</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <c:forEach var="pet" items="${pets}">
-                                    <tr>
-                                      <td>
-                                        <p class="fw-normal mb-1">${pet.name}</p>
-                                      </td>
-                                      <td>
-                                        <p class="fw-normal mb-1">${pet.type}</p>
-                                      </td>
-                                      <td>
-                                        <p class="fw-normal mb-1">${pet.breed}</p>
-                                      </td>
-                                      <td>
-                                        <p class="fw-normal mb-1">${pet.age}</p>
-                                      </td>
-                                      <td>
-                                        <p class="fw-normal mb-1">${pet.brithDate}</p>
-                                      </td>
-                                      <td>
-                                        <div class="d-flex align-items-center">
-                                          <a style="color: #dd4b39;" href="/user/${pet.id}/remove" role="button">
-                                            <i class="far fa-trash-alt"></i>
-                                          </a>
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  </c:forEach>
-                                </tbody>
-                              </table>
-                            </c:if>
-
-                            <!-- Cancel -->
-                            <div class="row">
-                              <a class="small text-muted" href="/user">Cancelar e voltar</a>
-                            </div>
                           </form>
+
+                          <hr />
+
+                          <c:if test="${empty pets}">
+                            <h5>Não existem pets cadastrados para este usuário!!!</h5>
+                          </c:if>
+                          <div class="pt-1 mb-4">
+                            <a class="btn btn-primary text-white" href="/pet/register/${user.id}" role="button">
+                              Adicionar Pet
+                            </a>
+                          </div>
+                          <c:if test="${not empty pets}">
+                            <table class="table align-middle mb-0 bg-white">
+                              <thead class="bg-light">
+                                <tr>
+                                  <th>Nome</th>
+                                  <th>Tipo</th>
+                                  <th>Raça</th>
+                                  <th>Idade</th>
+                                  <th>Data Nasc</th>
+                                  <th>Ação</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <c:forEach var="pet" items="${pets}">
+                                  <tr>
+                                    <td>
+                                      <p class="fw-normal mb-1">${pet.name}</p>
+                                    </td>
+                                    <td>
+                                      <p class="fw-normal mb-1">${pet.type}</p>
+                                    </td>
+                                    <td>
+                                      <p class="fw-normal mb-1">${pet.breed}</p>
+                                    </td>
+                                    <td>
+                                      <p class="fw-normal mb-1">${pet.age}</p>
+                                    </td>
+                                    <td>
+                                      <p class="fw-normal mb-1">${pet.brithDate}</p>
+                                    </td>
+                                    <td>
+                                      <div class="d-flex align-items-center">
+                                        <a style="color: #dd4b39;" href="/pet/${pet.id}/remove" role="button">
+                                          <i class="far fa-trash-alt"></i>
+                                        </a>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </c:forEach>
+                              </tbody>
+                            </table>
+                          </c:if>
+
+                          <!-- Cancel -->
+                          <div class="row">
+                            <a class="small text-muted" href="/user">Cancelar e voltar</a>
+                          </div>
+
+
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
-
               </section>
             </div>
           </div>

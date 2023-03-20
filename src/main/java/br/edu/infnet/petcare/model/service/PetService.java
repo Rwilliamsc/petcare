@@ -1,6 +1,8 @@
 package br.edu.infnet.petcare.model.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,12 +27,23 @@ public class PetService {
   public Pet getById(int key) {
     return petRepository.getById(key);
   }
+  
+  public List<Pet> getByUserId(int key) {
+    Collection<Pet> petList = petRepository.list();
+    List<Pet> petListByUser = new ArrayList<Pet>();
+    for (Pet pet : petList) {
+      if (pet.getUserId() == key) {
+          petListByUser.add(pet);
+      };
+  }
+  return petListByUser;
+  }
 
   public Pet update(int key, Pet pet) {
     return petRepository.update(key, pet);
   }
 
-  public  Pet remove(int key) {
+  public Pet remove(int key) {
     return petRepository.remove(key);
   }
 

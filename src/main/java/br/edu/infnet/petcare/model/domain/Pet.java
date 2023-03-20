@@ -6,17 +6,18 @@ public class Pet {
     private String breed        = "";
     private int age             = 0;
     private String brithDate    = "";
-    private User user;
+    private int userId          = 0;
     private int id              = 0;
 
     public Pet(){}
 
-    public Pet(String name, String type, String breed, int age, String brithDate){
+    public Pet(String name, String type, String breed, int age, String brithDate, int userId){
         this.name = name;
         this.type = type;
         this.breed = breed;
         this.age = age;
         this.brithDate = brithDate;
+        this.userId = userId;
        
     }
 
@@ -60,12 +61,12 @@ public class Pet {
         this.brithDate = brithDate;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getId() {
@@ -80,9 +81,9 @@ public class Pet {
     public String toString() {
 
         return String.format(
-                "Nome:  %s \n tipo: %s \n Guardiao: %d",
+                "Nome:  %s \n tipo: %s \n Guardião: %d",
                 this.getName(),
                 this.getType(),
-                this.getUser().getFullName());
+                this.getUserId());
     }
 }
