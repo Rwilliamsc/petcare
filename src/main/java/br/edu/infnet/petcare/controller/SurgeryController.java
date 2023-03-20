@@ -2,6 +2,7 @@ package br.edu.infnet.petcare.controller;
 
 import br.edu.infnet.petcare.model.domain.Surgery;
 import br.edu.infnet.petcare.model.service.SurgeryService;
+import br.edu.infnet.petcare.model.service.VeterinaryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ public class SurgeryController {
 
     @Autowired
     private SurgeryService surgeryService;
+    @Autowired
+    private VeterinaryService veterinaryService;
 
     @GetMapping("/surgery")
     public String listScreen(Model model) {
@@ -31,7 +34,7 @@ public class SurgeryController {
     public String create(Surgery surgery) {
         if (surgeryService.create(surgery)){
            
-            return "redirect:/surgery/list";
+            return "redirect:/surgery";
         }
         return "surgery/register";
     }
@@ -40,20 +43,21 @@ public class SurgeryController {
     public String editScreen(Model model, @PathVariable Integer id) {
         Surgery surgery = surgeryService.getById(id);
         model.addAttribute("surgery", surgery);
+        model.addAttribute("veterinaries", veterinaryService.list());
         return "surgery/edit";
     }
 
-    @PostMapping(value = "/surgery/editar")
+    @PostMapping(value = "/surgery/edit/{id}")
     public String edit(Surgery surgery) {
         surgeryService.update(surgery.getId(), surgery);
 
-        return "redirect:/surgery/list";
+        return "redirect:/surgery";
     }
 
     @GetMapping(value = "/surgery/{id}/remove")
     public String remove(@PathVariable Integer id) {
         surgeryService.remove(id);
-        return "redirect:/surgery/list";
+        return "redirect:/surgery";
     }
 
 }

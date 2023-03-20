@@ -2,6 +2,7 @@ package br.edu.infnet.petcare.controller;
 
 import br.edu.infnet.petcare.model.domain.Exam;
 import br.edu.infnet.petcare.model.service.ExamService;
+import br.edu.infnet.petcare.model.service.VeterinaryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ public class ExamController {
 
     @Autowired
     private ExamService examService;
+    @Autowired
+    private VeterinaryService veterinaryService;
 
     @GetMapping("/exam")
     public String listScreen(Model model) {
@@ -31,7 +34,7 @@ public class ExamController {
     public String create(Exam exam) {
         if (examService.create(exam)){
            
-            return "redirect:/exam/list";
+            return "redirect:/exam";
         }
         return "exam/register";
     }
@@ -40,20 +43,21 @@ public class ExamController {
     public String editScreen(Model model, @PathVariable Integer id) {
         Exam exam = examService.getById(id);
         model.addAttribute("exam", exam);
+        model.addAttribute("veterinaries", veterinaryService.list());
         return "exam/edit";
     }
 
-    @PostMapping(value = "/exam/editar")
+    @PostMapping(value = "/exam/edit/{id}")
     public String edit(Exam exam) {
         examService.update(exam.getId(), exam);
 
-        return "redirect:/exam/list";
+        return "redirect:/exam";
     }
 
     @GetMapping(value = "/exam/{id}/remove")
     public String remove(@PathVariable Integer id) {
         examService.remove(id);
-        return "redirect:/exam/list";
+        return "redirect:/exam";
     }
 
 }

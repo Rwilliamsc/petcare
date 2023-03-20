@@ -388,7 +388,7 @@
             <li><a class="link_name" href="#">Serviços</a></li>
             <li><a href="/appointment">Consultas</a></li>
             <li><a href="#">Cirurgias</a></li>
-            <li><a href="#">Exames</a></li>
+            <li><a href="/exam">Exames</a></li>
           </ul>
         </li>
         <li>

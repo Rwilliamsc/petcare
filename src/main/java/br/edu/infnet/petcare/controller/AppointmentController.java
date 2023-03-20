@@ -50,10 +50,7 @@ public class AppointmentController {
 
     @PostMapping(value = "/appointment/edit/{id}")
     public String edit(Appointment appointment) {
-        System.out.println(appointment.getId());
-        System.out.println(appointment.getName());
-        System.out.println(appointment.getLevel());
-        appointmentService.update(appointment.getId(), appointment);
+          appointmentService.update(appointment.getId(), appointment);
 
         return "redirect:/appointment";
     }
@@ -61,7 +58,7 @@ public class AppointmentController {
     @GetMapping(value = "/appointment/{id}/remove")
     public String remove(@PathVariable Integer id) {
         appointmentService.remove(id);
-        return "redirect:/appointment/list";
+        return "redirect:/appointment";
     }
 
 }
