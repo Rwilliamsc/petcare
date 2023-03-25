@@ -160,15 +160,27 @@
 
                           <hr />
 
-                          <c:if test="${empty pets}">
+                          <c:if test="${empty user.pets}">
                             <h5>Não existem pets cadastrados para este usuário!!!</h5>
                           </c:if>
-                          <div class="pt-1 mb-4">
-                            <a class="btn btn-primary text-white" href="/pet/register/${user.id}" role="button">
-                              Adicionar Pet
-                            </a>
-                          </div>
-                          <c:if test="${not empty pets}">
+                          <c:choose>
+                            <c:when test="${user.type == 'USER'}">
+                              <div class="pt-1 mb-4">
+                                <a class="btn btn-primary text-white" href="/pet/register" role="button">
+                                  Adicionar Pet
+                                </a>
+                              </div>
+                            </c:when>
+                            <c:when test="${user.type == 'ADMINISTRATOR'}">
+                              <div class="row">
+                                <button type="submit" class="btn btn-primary btn-block mb-4" disabled>
+                                  Adicionar Pet
+                                </button>
+                              </div>
+                            </c:when>
+                          </c:choose>
+
+                          <c:if test="${not empty user.pets}">
                             <table class="table align-middle mb-0 bg-white">
                               <thead class="bg-light">
                                 <tr>

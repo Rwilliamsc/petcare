@@ -11,6 +11,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.petcare.model.domain.Pet;
+import br.edu.infnet.petcare.model.domain.User;
 import br.edu.infnet.petcare.model.service.PetService;
 
 @Order(3)
@@ -42,10 +43,13 @@ public class PetLoader implements ApplicationRunner {
               field[1], 
               field[2],
               Integer.parseInt(field[3]),
-              field[4], 
-              Integer.parseInt(field[5])
+              field[4]
             );
+
+            User user = new User();
+            user.setId(Integer.parseInt(field[5]));
             
+            pet.setUser(user);
             petService.create(pet);
 
             System.out.println("A inclusão do pet "+pet.getName()+" foi realizada com sucesso!!!");

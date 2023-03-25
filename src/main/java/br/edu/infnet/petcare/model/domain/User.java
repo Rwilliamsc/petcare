@@ -1,10 +1,20 @@
 package br.edu.infnet.petcare.model.domain;
 
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
 public class User extends Person{
     private String email    = "";
     private String password = "";
-    private String nickName     = "";
+    private String nickName = "";
     private String type     = "";
+    @OneToMany
+    @JoinColumn(name = "userId")
+    private List<Pet> pets;
 
     public User() {}
    
@@ -75,6 +85,14 @@ public class User extends Person{
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
     }
 
     @Override

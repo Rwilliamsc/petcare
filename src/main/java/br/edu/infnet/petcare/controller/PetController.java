@@ -5,20 +5,20 @@ import br.edu.infnet.petcare.model.domain.User;
 import br.edu.infnet.petcare.model.service.PetService;
 import br.edu.infnet.petcare.model.service.UserService;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class PetController {
 
     @Autowired
     private PetService petService;
-    @Autowired
-    private UserService userService;
 
     @GetMapping("/pet")
     public String listScreen(Model model) {
@@ -26,27 +26,26 @@ public class PetController {
         return "pet/list";
     }
 
-    @GetMapping("/pet/register/{id}")
-    public String createScreen(Model model, @PathVariable Integer id) {
-        User user = userService.getById(id);
+    @GetMapping("/pet/register")
+    public String createScreen(Model model, @SessionAttribute("sessionUser") User user) {
         model.addAttribute("user", user);
         return "pet/register";
     }
 
     @PostMapping("/pet")
-    public String create(Pet pet) {
-        int userId = pet.getUserId();
-        if (petService.create(pet)){
-           
-            return "redirect:/user/"+userId+"/edit";
+    public String create(Pet pet, @SessionAttribute("sessionUser") User user) {
+        pet.setUser(user);
+        Pet p = petService.create(pet);
+        
+        if (p != null){
+            return "redirect:/user/"+user.getId()+"/edit";
         }
         return "pet/register";
     }
 
     @GetMapping(value = "/pet/{id}/edit")
     public String editScreen(Model model, @PathVariable Integer id) {
-        Pet pet = petService.getById(id);
-        model.addAttribute("pet", pet);
+        model.addAttribute("pet", petService.getById(id));
         return "pet/edit";
     }
 
@@ -58,8 +57,8 @@ public class PetController {
     }
 
     @GetMapping(value = "/pet/{id}/remove")
-    public String remove(@PathVariable Integer id) {
-        Pet pet = petService.remove(id);
-        return "redirect:/user/"+pet.getUserId()+"/edit";
+    public String remove(@PathVariable Integer id, @SessionAttribute("sessionUser") User user) {
+       petService.remove(id);
+       return "redirect:/user/"+user.getId()+"/edit";
     }
 }

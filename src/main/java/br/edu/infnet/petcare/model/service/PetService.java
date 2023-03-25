@@ -1,6 +1,5 @@
 package br.edu.infnet.petcare.model.service;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -8,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.petcare.model.domain.Pet;
-import br.edu.infnet.petcare.model.repository.PetRepository;
+import br.edu.infnet.petcare.model.domain.User;
+import br.edu.infnet.petcare.model.interfaces.PetRepository;
 
 @Service
 public class PetService {
@@ -16,35 +16,27 @@ public class PetService {
   @Autowired
   private PetRepository petRepository;
 
-  public boolean create(Pet pet) {
-   return petRepository.create(pet);
+  public Pet create(Pet pet) {
+   return petRepository.save(pet);
   }
 
   public Collection<Pet> list() {
-      return petRepository.list();
+      return (Collection<Pet>) petRepository.findAll();
+  }
+  public Collection<Pet> list(User user) {
+      return (Collection<Pet>) petRepository.getByuserId(user.getId());
   }
 
   public Pet getById(int key) {
     return petRepository.getById(key);
   }
   
-  public List<Pet> getByUserId(int key) {
-    Collection<Pet> petList = petRepository.list();
-    List<Pet> petListByUser = new ArrayList<Pet>();
-    for (Pet pet : petList) {
-      if (pet.getUserId() == key) {
-          petListByUser.add(pet);
-      };
-  }
-  return petListByUser;
-  }
-
   public Pet update(int key, Pet pet) {
-    return petRepository.update(key, pet);
+    return pet; //petRepository.update(key, pet);
   }
 
-  public Pet remove(int key) {
-    return petRepository.remove(key);
+  public void remove(int key) {
+     petRepository.deleteById(key);
   }
 
 }

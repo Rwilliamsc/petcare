@@ -91,7 +91,6 @@
                               </div>
                             </div>
 
-                            <!-- 2 column grid layout with text inputs for the CFMV and CPF -->
                             <div class="row">
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
@@ -107,16 +106,6 @@
                               </div>
                             </div>
 
-                            <!-- 2 column grid layout with text inputs for the phone and CPF -->
-                            <div class="row">
-                              <div class="col-md-6 mb-4">
-                                <div class="form-group">
-                                  <input type="number" id="userId" name="userId" class="form-control" value="${user.id}"
-                                    hidden />
-                                  <label class="form-label" for="userId" hidden></label>
-                                </div>
-                              </div>
-                            </div>
                             <!-- Submit button -->
                             <div class="row">
                               <button type="submit" class="btn btn-primary btn-block mb-4">

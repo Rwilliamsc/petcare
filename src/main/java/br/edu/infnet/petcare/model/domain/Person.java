@@ -1,12 +1,19 @@
 package br.edu.infnet.petcare.model.domain;
 
-public abstract class Person {
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
+@MappedSuperclass
+public abstract class Person {
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id              = 0;
     private String name         = "";
     private String familyName   = "";
     private String cpf          = "";
     private String status       = "";
-    private int id              = 0;
 
     public Person() {}
 

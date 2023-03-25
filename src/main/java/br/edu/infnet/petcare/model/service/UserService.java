@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.petcare.model.domain.User;
-import br.edu.infnet.petcare.model.repository.UserRepository;
+import br.edu.infnet.petcare.model.interfaces.UserRepository;
 
 @Service
 public class UserService {
@@ -14,12 +14,12 @@ public class UserService {
   @Autowired
   private UserRepository userRepository;
 
-  public boolean create(User user) {
-   return userRepository.create(user);
+  public User create(User user) {
+   return userRepository.save(user);
   }
 
   public Collection<User> list() {
-      return userRepository.list();
+      return (Collection<User>) userRepository.findAll();
   }
 
   public User getById(int key) {
@@ -27,23 +27,15 @@ public class UserService {
   }
 
   public User update(int key, User user) {
-    return userRepository.update(key, user);
+    return user; //userRepository.update(key, user);
   }
 
-  public  User remove(int key) {
-    return userRepository.remove(key);
+  public void remove(int key) {
+     userRepository.deleteById(key);
   }
 
   public User auth(User user) {
-    Collection<User> userList = userRepository.list();
-
-      for (User item : userList) {
-          if (item.getEmail().equalsIgnoreCase(user.getEmail()) &&
-                  item.getPassword().equals(user.getPassword())) {
-              return item;
-          }
-      }
-      return null;
+   return userRepository.authenticated(user.getEmail(), user.getPassword());
   }
 
 }
