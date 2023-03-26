@@ -6,14 +6,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import br.edu.infnet.petcare.model.domain.Service;
+import br.edu.infnet.petcare.model.domain.Services;
 
 @Repository
-public interface ServiceRepository extends CrudRepository<Service, Integer>{
+public interface ServiceRepository extends CrudRepository<Services, Integer>{
 
-	@Query("from Service s where s.id = :key")
-	Service getById(Integer key);
+	@Query("from Services s where s.id = :key")
+	Services getById(Integer key);
 
-	@Query("from Service s where s.vet.id = :vetId")
-	List<Service> getByVetId(Integer vetId);
+	@Query("from Services s where s.vet.id = :vetId")
+	List<Services> getByVetId(Integer vetId);
 }

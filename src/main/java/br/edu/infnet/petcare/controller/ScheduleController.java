@@ -1,7 +1,10 @@
 package br.edu.infnet.petcare.controller;
 
 import br.edu.infnet.petcare.model.domain.Schedule;
+import br.edu.infnet.petcare.model.domain.User;
 import br.edu.infnet.petcare.model.service.ScheduleService;
+import br.edu.infnet.petcare.model.service.ServicesService;
+import br.edu.infnet.petcare.model.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,12 +12,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class ScheduleController {
 
     @Autowired
     private ScheduleService scheduleService;
+    @Autowired
+    private ServicesService servicesService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/schedule")
     public String listScreen(Model model) {
@@ -23,7 +31,10 @@ public class ScheduleController {
     }
 
     @GetMapping("/schedule/register")
-    public String createScreen() {
+    public String createScreen(Model model, @SessionAttribute("sessionUser") User user) {
+        User u = userService.getById(user.getId());
+        model.addAttribute("services", servicesService.list());
+        model.addAttribute("pets", u.getPets());
         return "schedule/register";
     }
 

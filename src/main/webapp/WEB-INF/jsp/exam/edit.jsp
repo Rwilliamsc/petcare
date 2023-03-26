@@ -80,10 +80,10 @@
                               </div>
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
-                                  <select class="form-select" name="idVet" id="idVet">
+                                  <select class="form-select" name="vet.id" id="vet.id">
                                     <option selected>Selecione um Veterinário</option>
                                     <c:forEach var="vet" items="${veterinaries}">
-                                      <option value="${vet.id}" selected="${exam.idVet == vet.id }">${vet.name}
+                                      <option value="${vet.id}" selected="${exam.vet.id == vet.id }">${vet.name}
                                       </option>
                                     </c:forEach>
                                   </select>

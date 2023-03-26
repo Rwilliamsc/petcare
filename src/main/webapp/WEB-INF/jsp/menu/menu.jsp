@@ -354,12 +354,12 @@
           </ul>
         </li>
         <li>
-          <a href="#">
+          <a href="/schedule">
             <i class='bx bx-calendar'></i>
             <span class="link_name">Agendamentos</span>
           </a>
           <ul class="sub-menu blank">
-            <li><a class="link_name" href="#">Agendamentos</a></li>
+            <li><a class="link_name" href="/schedule">Agendamentos</a></li>
           </ul>
         </li>
         <!-- <li>

@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Service {
+public abstract class Services {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id                  = 0;
@@ -29,9 +29,9 @@ public abstract class Service {
     @JoinColumn(name = "serviceId")
 	private List<Schedule> schedule;
 
-    public Service(){}
+    public Services(){}
 
-    public Service (String name,String description,String availableDate){
+    public Services (String name,String description,String availableDate){
         this.name = name;
         this.description = description;
         this.availableDate = availableDate;

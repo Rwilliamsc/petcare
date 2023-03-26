@@ -152,10 +152,10 @@
                         <ul class="navbar-nav">
                             <li class="active"><a href="/home">Inicio</a></li>
                             <c:if test="${not empty sessionUser}">
-                                <li><a href="#">Agendamento</a></li>
-                                <li><a href="#">Consulta</a></li>
-                                <li><a href="#">Cirurgia</a></li>
-                                <li><a href="#">Exame</a></li>
+                                <li><a href="/schedule">Agendamento</a></li>
+                                <li><a href="/appointment">Consulta</a></li>
+                                <li><a href="/surgery">Cirurgia</a></li>
+                                <li><a href="/exam">Exame</a></li>
                                 <li><a href="/user">Usuario</a></li>
                             </c:if>
                         </ul>

@@ -3,7 +3,7 @@ package br.edu.infnet.petcare.model.domain;
 import javax.persistence.Entity;
 
 @Entity
-public class Appointment extends Service{
+public class Appointment extends Services{
     private String type = "APPOINTMENT";
     private String level ="";
     private String price = "";

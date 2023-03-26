@@ -1,5 +1,6 @@
 package br.edu.infnet.petcare.model.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,7 @@ public class Schedule {
     private int id = 0;
     private String date = "";
     private boolean isEmergency;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "userId")
     private User user;
     @ManyToOne
@@ -26,7 +27,7 @@ public class Schedule {
     private Veterinary vet;
     @ManyToOne
     @JoinColumn(name = "serviceId")
-    private Service service;
+    private Services service;
 
     public Schedule(){ }
 
@@ -78,11 +79,11 @@ public class Schedule {
         this.vet = vet;
     }
 
-    public Service getService() {
+    public Services getService() {
         return service;
     }
 
-    public void setService(Service service) {
+    public void setService(Services service) {
         this.service = service;
     }
 

@@ -5,7 +5,7 @@
 
     <head>
       <meta charset="UTF-8">
-      <title>Cadastro de Cirurgia</title>
+      <title>Agendamentos</title>
 
 
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -51,63 +51,31 @@
             backdrop-filter: blur(30px);
             ">
                         <div class="card-body p-5 shadow-5 text-center">
-                          <h2 class="fw-bold mb-5">Cadastro de Cirurgia</h2>
-                          <form action="/surgery" method="POST">
+                          <h2 class="fw-bold mb-5">Cadastro de Agendamento</h2>
+                          <form action="/schedule" method="POST">
 
                             <div class="row">
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
-                                  <input type="text" id="name" name="name" class="form-control" />
-                                  <label class="form-label" for="name">Nome</label>
-                                </div>
-                              </div>
-                              <div class="col-md-6 mb-4">
-                                <div class="form-group">
-                                  <input type="text" id="description" name="description" class="form-control" />
-                                  <label class="form-label" for="description">Descrição</label>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="row">
-                              <div class="col-md-6 mb-4">
-                                <div class="form-group">
-                                  <input type="date" id="availableDate" name="availableDate" class="form-control" />
-                                  <label class="form-label" for="availableDate">Data Disponivel</label>
-                                </div>
-                              </div>
-                              <div class="col-md-6 mb-4">
-                                <div class="form-group">
-                                  <select class="form-select" name="vet.id" id="vet.id">
-                                    <option selected>Selecione um Veterinário</option>
-                                    <c:forEach var="vet" items="${veterinaries}">
-                                      <option value="${vet.id}">${vet.name}</option>
+                                  <select class="form-select" name="service.id" id="serv">
+                                    <option selected>Selecione o Serviço</option>
+                                    <c:forEach var="service" items="${services}">
+                                      <option value="${service.id}">${service.name}</option>
                                     </c:forEach>
                                   </select>
-                                  <label class="form-label" for="level">Veterinário</label>
+                                  <label class="form-label" for="level">Serviço</label>
                                 </div>
                               </div>
-                            </div>
-
-                            <div class="row">
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
-                                  <input type="text" id="price" name="price" class="form-control" />
-                                  <label class="form-label" for="price">Preço</label>
+                                  <select class="form-select" name="pet.id" id="pet.id">
+                                    <option selected>Selecione um Veterinário</option>
+                                    <c:forEach var="pet" items="${pets}">
+                                      <option value="${pet.id}">${pet.name}</option>
+                                    </c:forEach>
+                                  </select>
+                                  <label class="form-label" for="level">Pet</label>
                                 </div>
-                              </div>
-                              <div class="col-md-6 mb-4">
-                                <div class="btn-group" id="check-group">
-                                  <input type="radio" class="btn-check" name="isCritical" id="isCritical1" value="true"
-                                    autocomplete="off" />
-                                  <label class="btn btn-secondary" for="isCritical1">SIM</label>
-
-                                  <input type="radio" class="btn-check" name="isCritical" id="isCritical2" value="false"
-                                    autocomplete="off" checked />
-                                  <label class="btn btn-secondary" for="isCritical2">NÃO</label>
-                                </div>
-                                <br />
-                                <span>Critico?</span>
                               </div>
                             </div>
 
@@ -123,18 +91,19 @@
                                   <label class="btn btn-secondary" for="isEmergency2">NÃO</label>
                                 </div>
                                 <br />
-                                <span>Critico?</span>
+                                <span>Emergencia?</span>
                               </div>
                             </div>
 
+
                             <div class="row">
                               <button type="submit" class="btn btn-primary btn-block mb-4">
-                                Cadastrar
+                                Agendar
                               </button>
                             </div>
 
                             <div class="row">
-                              <a class="small text-muted" href="/exam">Cancelar e voltar</a>
+                              <a class="small text-muted" href="/schedule">Cancelar e voltar</a>
                             </div>
                           </form>
                         </div>
