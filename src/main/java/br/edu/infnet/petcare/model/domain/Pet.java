@@ -1,11 +1,14 @@
 package br.edu.infnet.petcare.model.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Pet{
@@ -20,9 +23,10 @@ public class Pet{
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
+    @OneToMany
+    @JoinColumn(name = "petId")
+	private List<Schedule> schedule;
 
-
-    
     public Pet(){}
     
     public Pet(String name, String type, String breed, int age, String brithDate){
@@ -88,6 +92,14 @@ public class Pet{
     
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Schedule> getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(List<Schedule> schedule) {
+        this.schedule = schedule;
     }
 
     @Override

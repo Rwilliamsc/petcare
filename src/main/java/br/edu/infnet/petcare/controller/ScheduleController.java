@@ -29,8 +29,8 @@ public class ScheduleController {
 
     @PostMapping("/schedule")
     public String create(Schedule schedule) {
-        if (scheduleService.create(schedule)){
-           
+        Schedule sched = scheduleService.create(schedule);
+        if (sched != null){
             return "redirect:/schedule/list";
         }
         return "schedule/register";

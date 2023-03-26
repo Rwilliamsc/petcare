@@ -1,20 +1,40 @@
 package br.edu.infnet.petcare.model.domain;
 
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Service {
-    private String name         = "";
-    private String description  = "";
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id                  = 0;
+    private String name             = "";
+    private String description      = "";
     private String availableDate    = "";
-    private int idVet           = 0;
-    private int id              = 0;
+    @ManyToOne
+	@JoinColumn(name = "vetId")
+    private Veterinary vet;
+    @OneToMany
+    @JoinColumn(name = "serviceId")
+	private List<Schedule> schedule;
 
     public Service(){}
 
-    public Service (String name,String description,String availableDate, int idVet){
+    public Service (String name,String description,String availableDate){
         this.name = name;
         this.description = description;
         this.availableDate = availableDate;
-        this.idVet = idVet;
     }
 
     public String getName() {
@@ -42,12 +62,12 @@ public abstract class Service {
     }
 
 
-    public int getIdVet() {
-        return idVet;
+    public Veterinary getVet() {
+        return vet;
     }
 
-    public void setIdVet(int idVet) {
-        this.idVet = idVet;
+    public void setVet(Veterinary vet) {
+        this.vet = vet;
     }
 
     public int getId() {

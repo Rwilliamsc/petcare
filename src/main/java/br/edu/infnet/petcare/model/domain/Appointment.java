@@ -1,12 +1,17 @@
 package br.edu.infnet.petcare.model.domain;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Appointment extends Service{
     private String type = "APPOINTMENT";
     private String level ="";
     private String price = "";
 
-    public Appointment(String name, String description, String availableDate, int idVet, String price, String level){
-        super(name, description, availableDate, idVet);
+    public Appointment(){}
+
+    public Appointment(String name, String description, String availableDate, String price, String level){
+        super(name, description, availableDate);
         this.price = price;
         this.level = level;
 
@@ -37,7 +42,7 @@ public class Appointment extends Service{
     }
     @Override
     public String toString() {
-        return "Consulta Médica [Nome= " + super.getName() + ", Veterinário= " + super.getIdVet() + ", preço= " + this.getPrice()
+        return "Consulta Médica [Nome= " + super.getName() + ", Veterinário= " + super.getVet().getName() + ", preço= " + this.getPrice()
                 + ", Nivel de Emergencia= " + this.getLevel() + " ]";
     }
 }

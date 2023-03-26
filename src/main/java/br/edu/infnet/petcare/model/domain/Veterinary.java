@@ -1,10 +1,20 @@
 package br.edu.infnet.petcare.model.domain;
 
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Veterinary extends Person{
     private String specialty  = "";
     private String cfmv       = "";
     private String prefix     = "";
     private String phone      = "";
+    @OneToMany
+    @JoinColumn(name = "vetId")
+	private List<Schedule> schedule;
 
     public Veterinary() {}
 
@@ -46,6 +56,14 @@ public class Veterinary extends Person{
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<Schedule> getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(List<Schedule> schedule) {
+        this.schedule = schedule;
     }
 
     @Override

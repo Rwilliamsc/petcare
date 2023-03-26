@@ -1,11 +1,16 @@
 package br.edu.infnet.petcare.model.domain;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Exam extends Service{
     private String type = "EXAM";
     private String price = "";
 
-    public Exam(String name,String description,String availableDate, int idVet, String price){
-        super(name, description, availableDate, idVet);
+    public Exam(){}
+
+    public Exam(String name,String description,String availableDate, String price){
+        super(name, description, availableDate);
         this.price = price;
 
     }
@@ -28,7 +33,7 @@ public class Exam extends Service{
 
     @Override
     public String toString() {
-        return "Exame: [Nome= " + super.getName() + ", Veterinário= " + super.getIdVet() + ", preço= " + this.getPrice()
+        return "Exame: [Nome= " + super.getName() + ", Veterinário= " + super.getVet().getName() + ", preço= " + this.getPrice()
                 + " ]";
     }
 }

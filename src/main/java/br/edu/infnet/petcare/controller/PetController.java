@@ -3,8 +3,6 @@ package br.edu.infnet.petcare.controller;
 import br.edu.infnet.petcare.model.domain.Pet;
 import br.edu.infnet.petcare.model.domain.User;
 import br.edu.infnet.petcare.model.service.PetService;
-import br.edu.infnet.petcare.model.service.UserService;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

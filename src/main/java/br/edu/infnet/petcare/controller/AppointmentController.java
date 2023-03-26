@@ -33,8 +33,8 @@ public class AppointmentController {
 
     @PostMapping("/appointment")
     public String create(Appointment appointment) {
-        if (appointmentService.create(appointment)){
-           
+        Appointment service = appointmentService.create(appointment);
+        if (service != null){
             return "redirect:/appointment";
         }
         return "appointment/register";

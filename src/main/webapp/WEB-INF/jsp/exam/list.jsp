@@ -67,7 +67,7 @@
                           <p class="fw-normal mb-1">${exam.availableDate}</p>
                         </td>
                         <td>
-                          <p class="fw-normal mb-1">${exam.idVet}</p>
+                          <p class="fw-normal mb-1">${exam.vet.name}</p>
                         </td>
                         <td>
                           <p class="fw-normal mb-1">${exam.price}</p>

@@ -15,7 +15,10 @@ public class User extends Person{
     @OneToMany
     @JoinColumn(name = "userId")
     private List<Pet> pets;
-
+    @OneToMany
+    @JoinColumn(name = "userId")
+	private List<Schedule> schedule;
+   
     public User() {}
    
     public User(String name, String cpf, String email, String password) {
@@ -93,6 +96,14 @@ public class User extends Person{
 
     public void setPets(List<Pet> pets) {
         this.pets = pets;
+    }
+
+    public List<Schedule> getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(List<Schedule> schedule) {
+        this.schedule = schedule;
     }
 
     @Override

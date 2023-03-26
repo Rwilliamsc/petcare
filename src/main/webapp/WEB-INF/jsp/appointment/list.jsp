@@ -68,7 +68,7 @@
                           <p class="fw-normal mb-1">${ap.availableDate}</p>
                         </td>
                         <td>
-                          <p class="fw-normal mb-1">${ap.idVet}</p>
+                          <p class="fw-normal mb-1">${ap.vet.name}</p>
                         </td>
                         <td>
                           <p class="fw-normal mb-1">${ap.price}</p>

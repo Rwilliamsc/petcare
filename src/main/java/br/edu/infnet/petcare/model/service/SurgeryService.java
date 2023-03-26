@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.petcare.model.domain.Surgery;
-import br.edu.infnet.petcare.model.repository.SurgeryRepository;
+import br.edu.infnet.petcare.model.interfaces.SurgeryRepository;
 
 @Service
 public class SurgeryService {
@@ -14,12 +14,12 @@ public class SurgeryService {
   @Autowired
   private SurgeryRepository surgeryRepository;
 
-  public boolean create(Surgery surgery) {
-   return surgeryRepository.create(surgery);
+  public Surgery create(Surgery surgery) {
+   return surgeryRepository.save(surgery);
   }
 
   public Collection<Surgery> list() {
-      return surgeryRepository.list();
+      return (Collection<Surgery>) surgeryRepository.findAll();
   }
 
   public Surgery getById(int key) {
@@ -27,11 +27,11 @@ public class SurgeryService {
   }
 
   public Surgery update(int key, Surgery surgery) {
-    return surgeryRepository.update(key, surgery);
+    return surgery;//surgeryRepository.update(key, surgery);
   }
 
-  public  Surgery remove(int key) {
-    return surgeryRepository.remove(key);
+  public void remove(int key) {
+    surgeryRepository.deleteById(key);
   }
 
 }

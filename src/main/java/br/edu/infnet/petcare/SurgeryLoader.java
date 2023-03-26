@@ -11,6 +11,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.petcare.model.domain.Surgery;
+import br.edu.infnet.petcare.model.domain.Veterinary;
 import br.edu.infnet.petcare.model.service.SurgeryService;
 
 @Order(6)
@@ -41,12 +42,15 @@ public class SurgeryLoader implements ApplicationRunner {
               field[0], 
               field[1], 
               field[2],
-              Integer.parseInt(field[3]),
               field[4],
               Boolean.parseBoolean(field[5]),
               Boolean.parseBoolean(field[6])
             );
             
+            Veterinary vet = new Veterinary();
+            vet.setId(Integer.parseInt(field[3]));
+
+            surgery.setVet(vet);
             surgeryService.create(surgery);
 
             System.out.println("A inclusão da cirurgia "+surgery.getName()+" foi realizada com sucesso!!!");

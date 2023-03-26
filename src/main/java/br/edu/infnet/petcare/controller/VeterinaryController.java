@@ -29,7 +29,8 @@ public class VeterinaryController {
 
     @PostMapping("/veterinary")
     public String create(Veterinary veterinary) {
-        if (veterinaryService.create(veterinary)){
+        Veterinary vet = veterinaryService.create(veterinary);
+        if (vet != null){
             return "redirect:/veterinary";
         }
         return "veterinary/register";

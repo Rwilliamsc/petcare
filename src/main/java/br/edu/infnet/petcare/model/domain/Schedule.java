@@ -1,35 +1,34 @@
 package br.edu.infnet.petcare.model.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Schedule {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id = 0;
-    private int idService = 0;
-    private int idVet = 0;
-    private int idGuardian = 0;
-    private int idPet = 0;
-    private String nameService = "";
-    private String nameVet = "";
-    private String nameGuardian = "";
-    private String namePet = "";
-
     private String date = "";
     private boolean isEmergency;
-    private double value = 0.00;
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "petId")
+    private Pet pet;
+    @ManyToOne
+    @JoinColumn(name = "vetId")
+    private Veterinary vet;
+    @ManyToOne
+    @JoinColumn(name = "serviceId")
+    private Service service;
 
-    public Schedule(int idService, int idVet, int idGuardian, int idPet, String nameService, String nameVet, String nameGuardian, String namePet, String date, boolean isEmergency, double value){
-        this.idService = idService;
-        this.idVet = idVet;
-        this.idGuardian = idGuardian;
-        this.idPet = idPet;
-        this.date = date;
-        this.isEmergency = isEmergency;
-        this.value = value;
-        this.nameService = nameService;
-        this.nameVet = nameVet;
-        this.nameGuardian = nameGuardian;
-        this.namePet = namePet;
-    }
+    public Schedule(){ }
 
     public int getId() {
         return id;
@@ -37,38 +36,6 @@ public class Schedule {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getIdService() {
-        return idService;
-    }
-
-    public void setIdService(int idService) {
-        this.idService = idService;
-    }
-
-    public int getIdVet() {
-        return idVet;
-    }
-
-    public void setIdVet(int idVet) {
-        this.idVet = idVet;
-    }
-
-    public int getIdGuardian() {
-        return idGuardian;
-    }
-
-    public void setIdGuardian(int idGuardian) {
-        this.idGuardian = idGuardian;
-    }
-
-    public int getIdPet() {
-        return idPet;
-    }
-
-    public void setIdPet(int idPet) {
-        this.idPet = idPet;
     }
 
     public String getDate() {
@@ -87,48 +54,40 @@ public class Schedule {
         isEmergency = emergency;
     }
 
-    public double getValue() {
-        return value;
+    public User getUser() {
+        return user;
     }
 
-    public void setValue(double value) {
-        this.value = value;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getNameService() {
-        return nameService;
+    public Pet getPet() {
+        return pet;
     }
 
-    public void setNameService(String nameService) {
-        this.nameService = nameService;
+    public void setPet(Pet pet) {
+        this.pet = pet;
     }
 
-    public String getNameVet() {
-        return nameVet;
+    public Veterinary getVet() {
+        return vet;
     }
 
-    public void setNameVet(String nameVet) {
-        this.nameVet = nameVet;
+    public void setVet(Veterinary vet) {
+        this.vet = vet;
     }
 
-    public String getNameGuardian() {
-        return nameGuardian;
+    public Service getService() {
+        return service;
     }
 
-    public void setNameGuardian(String nameGuardian) {
-        this.nameGuardian = nameGuardian;
-    }
-
-    public String getNamePet() {
-        return namePet;
-    }
-
-    public void setNamePet(String namePet) {
-        this.namePet = namePet;
+    public void setService(Service service) {
+        this.service = service;
     }
 
     @Override
     public String toString() {
-        return "Agendamento: [id= " + this.getId() + ", Guardian= " + this.getIdGuardian() + ", Pet= " + this.getIdPet() + " ]";
+        return "Agendamento: [id= " + this.getId() + ", Guardian= " + this.user.getFullName() + ", Pet= " + this.pet.getName() + " ]";
     }
 }

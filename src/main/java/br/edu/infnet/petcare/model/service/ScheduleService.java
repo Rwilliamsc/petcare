@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.petcare.model.domain.Schedule;
-import br.edu.infnet.petcare.model.repository.ScheduleRepository;
+import br.edu.infnet.petcare.model.interfaces.ScheduleRepository;
 
 @Service
 public class ScheduleService {
@@ -14,12 +14,12 @@ public class ScheduleService {
   @Autowired
   private ScheduleRepository scheduleRepository;
 
-  public boolean create(Schedule schedule) {
-   return scheduleRepository.create(schedule);
+  public Schedule create(Schedule schedule) {
+   return scheduleRepository.save(schedule);
   }
 
   public Collection<Schedule> list() {
-      return scheduleRepository.list();
+      return (Collection<Schedule>)scheduleRepository.findAll();
   }
 
   public Schedule getById(int key) {
@@ -27,11 +27,11 @@ public class ScheduleService {
   }
 
   public Schedule update(int key, Schedule schedule) {
-    return scheduleRepository.update(key, schedule);
+    return schedule; //scheduleRepository.update(key, schedule);
   }
 
-  public  Schedule remove(int key) {
-    return scheduleRepository.remove(key);
+  public void remove(int key) {
+    scheduleRepository.deleteById(key);
   }
 
 

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.petcare.model.domain.Appointment;
-import br.edu.infnet.petcare.model.repository.AppointmentRepository;
+import br.edu.infnet.petcare.model.interfaces.AppointmentRepository;
 
 @Service
 public class AppointmentService {
@@ -14,12 +14,12 @@ public class AppointmentService {
   @Autowired
   private AppointmentRepository appointmentRepository;
 
-  public boolean create(Appointment appointment) {
-   return appointmentRepository.create(appointment);
+  public Appointment create(Appointment appointment) {
+   return appointmentRepository.save(appointment);
 }
 
 public Collection<Appointment> list() {
-    return appointmentRepository.list();
+    return (Collection<Appointment>) appointmentRepository.findAll();
 }
 
 public Appointment getById(int key) {
@@ -27,11 +27,11 @@ public Appointment getById(int key) {
 }
 
 public Appointment update(int key, Appointment appointment) {
-	 return appointmentRepository.update(key, appointment);
+	 return appointment; //appointmentRepository.update(key, appointment);
 }
 
-public  Appointment remove(int key) {
-  return appointmentRepository.remove(key);
+public void remove(int key) {
+  appointmentRepository.deleteById(key);
 }
 
 }

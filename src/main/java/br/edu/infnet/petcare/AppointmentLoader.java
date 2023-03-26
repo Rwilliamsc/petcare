@@ -11,6 +11,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.petcare.model.domain.Appointment;
+import br.edu.infnet.petcare.model.domain.Veterinary;
 import br.edu.infnet.petcare.model.service.AppointmentService;
 
 @Order(4)
@@ -41,11 +42,13 @@ public class AppointmentLoader implements ApplicationRunner {
               field[0], 
               field[1], 
               field[2],
-              Integer.parseInt(field[3]),
               field[4], 
               field[5]
             );
-            
+            Veterinary vet = new Veterinary();
+            vet.setId(Integer.parseInt(field[3]));
+
+            appointment.setVet(vet);
             appointmentService.create(appointment);
 
             System.out.println("A inclusão do consulta "+appointment.getName()+" foi realizada com sucesso!!!");

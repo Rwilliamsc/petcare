@@ -11,6 +11,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.petcare.model.domain.Exam;
+import br.edu.infnet.petcare.model.domain.Veterinary;
 import br.edu.infnet.petcare.model.service.ExamService;
 
 @Order(5)
@@ -41,10 +42,12 @@ public class ExamLoader implements ApplicationRunner {
               field[0], 
               field[1], 
               field[2],
-              Integer.parseInt(field[3]),
               field[4]
             );
-            
+            Veterinary vet = new Veterinary();
+            vet.setId(Integer.parseInt(field[3]));
+
+            exam.setVet(vet);
             examService.create(exam);
 
             System.out.println("A inclusão do exame "+exam.getName()+" foi realizada com sucesso!!!");

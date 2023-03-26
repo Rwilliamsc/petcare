@@ -33,8 +33,8 @@ public class SurgeryController {
 
     @PostMapping("/surgery")
     public String create(Surgery surgery) {
-        if (surgeryService.create(surgery)){
-           
+        Surgery service = surgeryService.create(surgery);
+        if (service != null){
             return "redirect:/surgery";
         }
         return "surgery/register";

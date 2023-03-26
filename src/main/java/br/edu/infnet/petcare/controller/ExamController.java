@@ -32,8 +32,8 @@ public class ExamController {
 
     @PostMapping("/exam")
     public String create(Exam exam) {
-        if (examService.create(exam)){
-           
+        Exam service = examService.create(exam);
+        if (service != null){
             return "redirect:/exam";
         }
         return "exam/register";
