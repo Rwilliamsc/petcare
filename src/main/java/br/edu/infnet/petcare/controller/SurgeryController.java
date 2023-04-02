@@ -19,9 +19,18 @@ public class SurgeryController {
     @Autowired
     private VeterinaryService veterinaryService;
 
+    private String msg;
+    private String typeAlert;
+
     @GetMapping("/surgery")
     public String listScreen(Model model) {
         model.addAttribute("surgeries", surgeryService.list());
+
+        model.addAttribute("msg", msg);
+        model.addAttribute("typeAlert", typeAlert);
+
+        msg = null;
+        typeAlert = null;
         return "surgery/list";
     }
 
@@ -34,7 +43,7 @@ public class SurgeryController {
     @PostMapping("/surgery")
     public String create(Surgery surgery) {
         Surgery service = surgeryService.create(surgery);
-        if (service != null){
+        if (service != null) {
             return "redirect:/surgery";
         }
         return "surgery/register";
@@ -57,8 +66,16 @@ public class SurgeryController {
 
     @GetMapping(value = "/surgery/{id}/remove")
     public String remove(@PathVariable Integer id) {
-        surgeryService.remove(id);
-        return "redirect:/surgery";
+        try {
+            surgeryService.remove(id);
+            msg = "Registro removido com sucesso.";
+            typeAlert = "success";
+            return "redirect:/surgery";
+        } catch (Exception e) {
+            msg = "Não foi possivel remover este registro.";
+            typeAlert = "danger";
+            return "redirect:/surgery";
+        }
     }
 
 }

@@ -24,6 +24,7 @@
 
     <body>
       <c:import url="/WEB-INF/jsp/menu/menu.jsp" />
+      <c:import url="/WEB-INF/jsp/menu/toast.jsp" />
 
       <section class="home-section vh-100">
         <i class='bx bx-menu'></i>

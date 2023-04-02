@@ -21,20 +21,29 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 public class UserController {
 
     @Autowired
-	private UserService userService;
+    private UserService userService;
     @Autowired
-	private AddressService addressService;
+    private AddressService addressService;
+
+    private String msg;
+    private String typeAlert;
 
     @GetMapping("/user")
     public String listScreen(Model model, @SessionAttribute("sessionUser") User user) {
-       
-        if(user.getType().equalsIgnoreCase("ADMINISTRATOR")){
+
+        if (user.getType().equalsIgnoreCase("ADMINISTRATOR")) {
             model.addAttribute("users", userService.list());
-        }else {
+        } else {
             List<User> userlist = new ArrayList<User>();
             userlist.add(user);
             model.addAttribute("users", userlist);
         }
+
+        model.addAttribute("msg", msg);
+        model.addAttribute("typeAlert", typeAlert);
+
+        msg = null;
+        typeAlert = null;
         return "user/list";
     }
 
@@ -46,7 +55,7 @@ public class UserController {
     @PostMapping("/user")
     public String create(User user) {
         User userCreated = userService.create(user);
-        if (userCreated != null){
+        if (userCreated != null) {
             return "redirect:/login";
         }
         return "user/register";
@@ -61,22 +70,34 @@ public class UserController {
     }
 
     @PostMapping(value = "/user/edit/{id}")
-    public String edit(@PathVariable Integer id,@SessionAttribute("sessionUser") User sessionUser,User user) {
+    public String edit(@PathVariable Integer id, @SessionAttribute("sessionUser") User sessionUser, User user) {
         User bUser = userService.getById(id);
         user.setPets(bUser.getPets());
         userService.update(user.getId(), user);
+
+        msg = "Usuário atualizado com sucesso.";
+        typeAlert = "success";
 
         return "redirect:/user";
     }
 
     @GetMapping(value = "/user/{id}/remove")
     public String remove(@PathVariable Integer id) {
-        userService.remove(id);
-        return "redirect:/user";
+        try {
+            userService.remove(id);
+            msg = "Usuário removido com sucesso.";
+            typeAlert = "success";
+            return "redirect:/user";
+        } catch (Exception e) {
+            msg = "Não foi possivel remover este usuário.";
+            typeAlert = "danger";
+            return "redirect:/user";
+        }
+
     }
 
     @GetMapping(value = "/user/cep/{cep}/{id}")
-    public String getAddressByCep(Model model, Address address,@PathVariable String cep, @PathVariable Integer id) {
+    public String getAddressByCep(Model model, Address address, @PathVariable String cep, @PathVariable Integer id) {
         User user = userService.getById(id);
         Address addr = addressService.getAddress(cep);
         user.setAddress(addr);

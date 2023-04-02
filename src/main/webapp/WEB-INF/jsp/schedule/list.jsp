@@ -24,6 +24,7 @@
 
     <body>
       <c:import url="/WEB-INF/jsp/menu/menu.jsp" />
+      <c:import url="/WEB-INF/jsp/menu/toast.jsp" />
 
       <section class="home-section vh-100">
         <i class='bx bx-menu'></i>
@@ -90,9 +91,6 @@
                         </td>
                         <td>
                           <div class="d-flex align-items-center">
-                            <a style="color: #3b5998;" href="/schedule/${sched.id}/edit" role="button" class="me-3">
-                              <i class="fas fa-pencil-alt"></i>
-                            </a>
                             <a style="color: #dd4b39;" href="/schedule/${sched.id}/remove" role="button">
                               <i class="far fa-trash-alt"></i>
                             </a>

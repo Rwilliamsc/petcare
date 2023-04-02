@@ -14,11 +14,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class VeterinaryController {
 
     @Autowired
-	private VeterinaryService veterinaryService;
+    private VeterinaryService veterinaryService;
+
+    private String msg;
+    private String typeAlert;
 
     @GetMapping("/veterinary")
     public String listScreen(Model model) {
         model.addAttribute("veterinaries", veterinaryService.list());
+
+        model.addAttribute("msg", msg);
+        model.addAttribute("typeAlert", typeAlert);
+
+        msg = null;
+        typeAlert = null;
         return "veterinary/list";
     }
 
@@ -29,8 +38,11 @@ public class VeterinaryController {
 
     @PostMapping("/veterinary")
     public String create(Veterinary veterinary) {
+        veterinary.setStatus("ACTIVE");
         Veterinary vet = veterinaryService.create(veterinary);
-        if (vet != null){
+        if (vet != null) {
+            msg = "Veterinário cadastrados com sucesso";
+            typeAlert = "success";
             return "redirect:/veterinary";
         }
         return "veterinary/register";
@@ -46,13 +58,23 @@ public class VeterinaryController {
     @PostMapping(value = "/veterinary/edit/{id}")
     public String edit(Veterinary veterinary) {
         veterinaryService.update(veterinary.getId(), veterinary);
+        msg = "Veterinário editado com sucesso";
+        typeAlert = "success";
         return "redirect:/veterinary";
     }
 
     @GetMapping(value = "/veterinary/{id}/remove")
     public String remove(@PathVariable Integer id) {
-        veterinaryService.remove(id);
-        return "redirect:/veterinary";
+        try {
+            veterinaryService.remove(id);
+            msg = "Veterinário removido com sucesso.";
+            typeAlert = "success";
+            return "redirect:/veterinary";
+        } catch (Exception e) {
+            msg = "Não foi possivel remover este veterinário, pois está relacionado a um serviço ativo.";
+            typeAlert = "danger";
+            return "redirect:/veterinary";
+        }
     }
 
 }

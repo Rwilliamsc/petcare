@@ -51,12 +51,16 @@ public class PetController {
     public String edit(Pet pet) {
         petService.update(pet.getId(), pet);
 
-        return "redirect:/pet/list";
+        return "redirect:/pet";
     }
 
     @GetMapping(value = "/pet/{id}/remove")
     public String remove(@PathVariable Integer id, @SessionAttribute("sessionUser") User user) {
-       petService.remove(id);
-       return "redirect:/user/"+user.getId()+"/edit";
+        try {
+            petService.remove(id);
+            return "redirect:/user/"+user.getId()+"/edit";
+        } catch (Exception e) {
+            return "redirect:/user/"+user.getId()+"/edit";
+        }
     }
 }

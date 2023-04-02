@@ -19,9 +19,17 @@ public class AppointmentController {
     @Autowired
     private VeterinaryService veterinaryService;
 
+    private String msg;
+    private String typeAlert;
+
     @GetMapping("/appointment")
     public String listScreen(Model model) {
         model.addAttribute("appointments", appointmentService.list());
+        model.addAttribute("msg", msg);
+        model.addAttribute("typeAlert", typeAlert);
+
+        msg = null;
+        typeAlert = null;
         return "appointment/list";
     }
 
@@ -33,11 +41,20 @@ public class AppointmentController {
 
     @PostMapping("/appointment")
     public String create(Appointment appointment) {
-        Appointment service = appointmentService.create(appointment);
-        if (service != null){
-            return "redirect:/appointment";
+        try {
+            Appointment service = appointmentService.create(appointment);
+            if (service != null){
+                msg = "Registro criado com sucesso.";
+                typeAlert = "success";
+                return "redirect:/appointment";
+            }
+            return "appointment/register";
+        } catch (Exception e) {
+            msg = "Ops! Ocorreu um erro ao criar esse registro.";
+            typeAlert = "warning";
+            return "appointment/register";
         }
-        return "appointment/register";
+       
     }
 
     @GetMapping(value = "/appointment/{id}/edit")
@@ -57,8 +74,17 @@ public class AppointmentController {
 
     @GetMapping(value = "/appointment/{id}/remove")
     public String remove(@PathVariable Integer id) {
-        appointmentService.remove(id);
-        return "redirect:/appointment";
+        try {
+            appointmentService.remove(id);
+            msg = "Registro removido com sucesso.";
+            typeAlert = "success";
+            return "redirect:/appointment";
+        } catch (Exception e) {
+            msg = "Não foi possivel remover este registro.";
+            typeAlert = "danger";
+            return "redirect:/appointment";
+        }
+        
     }
 
 }

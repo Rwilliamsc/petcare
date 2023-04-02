@@ -24,14 +24,23 @@ public class ScheduleController {
     @Autowired
     private UserService userService;
 
+    private String msg;
+    private String typeAlert;
+
     @GetMapping("/schedule")
-    public String listScreen(Model model,@SessionAttribute("sessionUser") User user) {
-    	 if(user.getType().equalsIgnoreCase("ADMINISTRATOR")){
-    		 model.addAttribute("schedules", scheduleService.list());
-         }else {
-        	 model.addAttribute("schedules", scheduleService.getByUser(user.getId()));
-         }
-    	 
+    public String listScreen(Model model, @SessionAttribute("sessionUser") User user) {
+        if (user.getType().equalsIgnoreCase("ADMINISTRATOR")) {
+            model.addAttribute("schedules", scheduleService.list());
+        } else {
+            model.addAttribute("schedules", scheduleService.getByUser(user.getId()));
+        }
+
+        model.addAttribute("msg", msg);
+        model.addAttribute("typeAlert", typeAlert);
+
+        msg = null;
+        typeAlert = null;
+
         return "schedule/list";
     }
 
@@ -44,16 +53,20 @@ public class ScheduleController {
     }
 
     @PostMapping("/schedule")
-    public String create(Schedule schedule,@SessionAttribute("sessionUser") User user) {
-    	
-    	schedule.setVet(schedule.getService().getVet());
-    	schedule.setDate(schedule.getService().getAvailableDate());
-    	schedule.setUser(user);
-    	
+    public String create(Schedule schedule, @SessionAttribute("sessionUser") User user) {
+
+        schedule.setVet(schedule.getService().getVet());
+        schedule.setDate(schedule.getService().getAvailableDate());
+        schedule.setUser(user);
+
         Schedule sched = scheduleService.create(schedule);
-        if (sched != null){
+        if (sched != null) {
+            msg = "Agendamento realizado com sucesso.";
+            typeAlert = "success";
             return "redirect:/schedule";
         }
+        msg = "Não foi possivel realizar este agendamento.";
+        typeAlert = "warning";
         return "schedule/register";
     }
 
@@ -68,13 +81,20 @@ public class ScheduleController {
     public String edit(Schedule schedule) {
         scheduleService.update(schedule.getId(), schedule);
 
-        return "redirect:/schedule/list";
+        return "redirect:/schedule";
     }
 
     @GetMapping(value = "/schedule/{id}/remove")
     public String remove(@PathVariable Integer id) {
-        scheduleService.remove(id);
-        return "redirect:/schedule/list";
+        try {
+            scheduleService.remove(id);
+            msg = "Agendamento removido com sucesso.";
+            typeAlert = "success";
+            return "redirect:/schedule";
+        } catch (Exception e) {
+            msg = "Não foi possivel remover este agendamento.";
+            typeAlert = "danger";
+            return "redirect:/schedule";
+        }
     }
-
 }

@@ -19,9 +19,18 @@ public class ExamController {
     @Autowired
     private VeterinaryService veterinaryService;
 
+    private String msg;
+    private String typeAlert;
+
     @GetMapping("/exam")
     public String listScreen(Model model) {
         model.addAttribute("exams", examService.list());
+
+        model.addAttribute("msg", msg);
+        model.addAttribute("typeAlert", typeAlert);
+
+        msg = null;
+        typeAlert = null;
         return "exam/list";
     }
 
@@ -34,6 +43,8 @@ public class ExamController {
     public String create(Exam exam) {
         Exam service = examService.create(exam);
         if (service != null){
+            msg = "Registro criado com sucesso.";
+            typeAlert = "success";
             return "redirect:/exam";
         }
         return "exam/register";
@@ -56,8 +67,17 @@ public class ExamController {
 
     @GetMapping(value = "/exam/{id}/remove")
     public String remove(@PathVariable Integer id) {
-        examService.remove(id);
-        return "redirect:/exam";
+        try {
+            examService.remove(id);
+            msg = "Registro removido com sucesso.";
+            typeAlert = "success";
+            return "redirect:/exam";
+        } catch (Exception e) {
+            msg = "Não foi possivel remover este registro.";
+            typeAlert = "danger";
+            return "redirect:/exam";
+        }
+        
     }
 
 }

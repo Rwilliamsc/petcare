@@ -362,35 +362,23 @@
             <li><a class="link_name" href="/schedule">Agendamentos</a></li>
           </ul>
         </li>
-        <!-- <li>
-          <div class="iocn-link">
-            <a href="#">
-              <i class='bx bx-book-alt'></i>
-              <span class="link_name">Pacientes</span>
-            </a>
-            <i class='bx bxs-chevron-down arrow'></i>
-          </div>
-          <ul class="sub-menu">
-            <li><a class="link_name" href="#">Pacientes</a></li>
-            <li><a href="#">Listar</a></li>
-            <li><a href="#">Prontuários</a></li>
-          </ul>
-        </li> -->
-        <li>
-          <div class="iocn-link">
-            <a href="#">
-              <i class='bx bx-task'></i>
-              <span class="link_name">Serviços</span>
-            </a>
-            <i class='bx bxs-chevron-down arrow'></i>
-          </div>
-          <ul class="sub-menu">
-            <li><a class="link_name" href="#">Serviços</a></li>
-            <li><a href="/appointment">Consultas</a></li>
-            <li><a href="/surgery">Cirurgias</a></li>
-            <li><a href="/exam">Exames</a></li>
-          </ul>
-        </li>
+        <c:if test="${sessionUser.type == 'ADMINISTRATOR'}">
+          <li>
+            <div class="iocn-link">
+              <a href="#">
+                <i class='bx bx-task'></i>
+                <span class="link_name">Serviços</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="link_name" href="#">Serviços</a></li>
+              <li><a href="/appointment">Consultas</a></li>
+              <li><a href="/surgery">Cirurgias</a></li>
+              <li><a href="/exam">Exames</a></li>
+            </ul>
+          </li>
+        </c:if>
         <li>
           <a href="/user">
             <i class='bx bx-user'></i>
@@ -400,15 +388,17 @@
             <li><a class="link_name" href="/user">Usuários</a></li>
           </ul>
         </li>
-        <li>
-          <a href="#">
-            <i class="fas fa-users"></i>
-            <span class="link_name">Veterinários</span>
-          </a>
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="/veterinary">Veterinários</a></li>
-          </ul>
-        </li>
+        <c:if test="${sessionUser.type == 'ADMINISTRATOR'}">
+          <li>
+            <a href="#">
+              <i class="fas fa-users"></i>
+              <span class="link_name">Veterinários</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li><a class="link_name" href="/veterinary">Veterinários</a></li>
+            </ul>
+          </li>
+        </c:if>
 
         <li>
           <div class="profile-details">

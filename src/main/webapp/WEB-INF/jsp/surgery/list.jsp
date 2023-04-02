@@ -24,6 +24,7 @@
 
     <body>
       <c:import url="/WEB-INF/jsp/menu/menu.jsp" />
+      <c:import url="/WEB-INF/jsp/menu/toast.jsp" />
 
       <section class="home-section vh-100">
         <i class='bx bx-menu'></i>
@@ -69,7 +70,7 @@
                           <p class="fw-normal mb-1">${surg.availableDate}</p>
                         </td>
                         <td>
-                          <p class="fw-normal mb-1">${surg.vet.id}</p>
+                          <p class="fw-normal mb-1">${surg.vet.name}</p>
                         </td>
                         <td>
                           <p class="fw-normal mb-1">${surg.price}</p>

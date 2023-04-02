@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 @SessionAttributes("sessionUser")
 public class LoginController {
     @Autowired
-	private UserService userService;
-    
+    private UserService userService;
+
     @GetMapping(value = "/login")
     public String loginScreen() {
         return "login";
@@ -29,11 +28,12 @@ public class LoginController {
     public String login(Model model, @RequestParam String email, @RequestParam String password) {
         User user = new User(email, password);
         User userAuth = userService.auth(user);
-       
 
         if (userAuth != null) {
             model.addAttribute("sessionUser", userAuth);
-            return "redirect:/";
+            model.addAttribute("msg", "Seja bem-vindo " + userAuth.getName());
+            model.addAttribute("typeAlert", "success");
+            return "home/home";
         }
         return "login";
     }

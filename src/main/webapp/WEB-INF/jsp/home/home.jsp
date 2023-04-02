@@ -25,11 +25,12 @@
 
     <body>
       <c:import url="/WEB-INF/jsp/menu/menu.jsp" />
+      <c:import url="/WEB-INF/jsp/menu/toast.jsp" />
 
       <section class="home-section">
         <i class='bx bx-menu'></i>
         <div class="home-content">
-          <div class="container h-50">
+          <div class="container h-50" id="container">
             <h2>Home</h2>
             <!-- Conteudo aqui  -->
           </div>
