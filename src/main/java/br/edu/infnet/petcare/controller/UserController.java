@@ -1,18 +1,20 @@
 package br.edu.infnet.petcare.controller;
 
+import br.edu.infnet.petcare.model.domain.Address;
 import br.edu.infnet.petcare.model.domain.User;
+import br.edu.infnet.petcare.model.service.AddressService;
 import br.edu.infnet.petcare.model.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
@@ -20,6 +22,8 @@ public class UserController {
 
     @Autowired
 	private UserService userService;
+    @Autowired
+	private AddressService addressService;
 
     @GetMapping("/user")
     public String listScreen(Model model, @SessionAttribute("sessionUser") User user) {
@@ -57,8 +61,11 @@ public class UserController {
     }
 
     @PostMapping(value = "/user/edit/{id}")
-    public String edit(User user) {
+    public String edit(@PathVariable Integer id,@SessionAttribute("sessionUser") User sessionUser,User user) {
+        User bUser = userService.getById(id);
+        user.setPets(bUser.getPets());
         userService.update(user.getId(), user);
+
         return "redirect:/user";
     }
 
@@ -68,4 +75,13 @@ public class UserController {
         return "redirect:/user";
     }
 
+    @GetMapping(value = "/user/cep/{cep}/{id}")
+    public String getAddressByCep(Model model, Address address,@PathVariable String cep, @PathVariable Integer id) {
+        User user = userService.getById(id);
+        Address addr = addressService.getAddress(cep);
+        user.setAddress(addr);
+        model.addAttribute("user", user);
+        model.addAttribute("pets", user.getPets());
+        return "user/edit";
+    }
 }

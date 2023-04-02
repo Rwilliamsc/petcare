@@ -3,6 +3,8 @@ package br.edu.infnet.petcare.model.service;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.petcare.model.domain.Schedule;
@@ -19,7 +21,11 @@ public class ScheduleService {
   }
 
   public Collection<Schedule> list() {
-      return (Collection<Schedule>)scheduleRepository.findAll();
+      return (Collection<Schedule>)scheduleRepository.getList(Sort.by(Direction.ASC, "date"));
+  }
+  
+  public Collection<Schedule> getByUser(int key) {
+      return (Collection<Schedule>)scheduleRepository.getByUser(key, Sort.by(Direction.ASC, "date"));
   }
 
   public Schedule getById(int key) {
@@ -27,7 +33,7 @@ public class ScheduleService {
   }
 
   public Schedule update(int key, Schedule schedule) {
-    return schedule; //scheduleRepository.update(key, schedule);
+    return scheduleRepository.save(schedule);
   }
 
   public void remove(int key) {

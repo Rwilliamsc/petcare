@@ -150,7 +150,67 @@
                               </div>
                             </div>
 
-                            <!-- Submit button -->
+                            <div class="row">
+                              <div class="col-md-6 mb-4">
+                                <div class="form-group">
+                                  <div class="input-group mb-3">
+                                    <input type="text" id="cep" name="address.cep" class="form-control"
+                                      value="${user.address.cep}" />
+                                    <a class="btn btn-outline-primary text-white" id="getcep"
+                                      style="background-color: #3b5998;" onclick="getCep('${user.id}')" role="button">
+                                      Buscar
+                                    </a>
+
+                                  </div>
+                                  <label class="form-label" for="cep">CEP</label>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-12 mb-4">
+                                <div class="form-group">
+                                  <input type="text" id="logradouro" name="address.logradouro" class="form-control"
+                                    value="${user.address.logradouro}" />
+                                  <label for="logradouro">Endereço</label>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-6 mb-4">
+                                <div class="form-group">
+                                  <input type="text" id="complemento" name="address.complemento" class="form-control"
+                                    value="${user.address.complemento}" />
+                                  <label for="complemento">Complemento</label>
+                                </div>
+                              </div>
+                              <div class="col-md-6 mb-4">
+                                <div class="form-group">
+                                  <input type="text" id="bairro" name="address.bairro" class="form-control"
+                                    value="${user.address.bairro}" />
+                                  <label for="bairro">Bairro</label>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-6 mb-4">
+                                <div class="form-group">
+                                  <input type="text" id="localidade" name="address.localidade" class="form-control"
+                                    value="${user.address.localidade}" />
+                                  <label for="localidade">Localidade</label>
+                                </div>
+                              </div>
+                              <div class="col-md-6 mb-4">
+                                <div class="form-group">
+                                  <input type="text" id="uf" name="address.uf" class="form-control"
+                                    value="${user.address.uf}" />
+                                  <label for="uf">UF</label>
+                                </div>
+                              </div>
+                            </div>
+
                             <div class="row">
                               <button type="submit" class="btn btn-primary btn-block mb-4">
                                 Atualizar
@@ -173,7 +233,7 @@
                             </c:when>
                             <c:when test="${user.type == 'ADMINISTRATOR'}">
                               <div class="row">
-                                <button type="submit" class="btn btn-primary btn-block mb-4" disabled>
+                                <button type="submit" class="btn btn-primary btn-block mb-4">
                                   Adicionar Pet
                                 </button>
                               </div>
@@ -242,5 +302,15 @@
 
       <c:import url="/WEB-INF/jsp/menu/menuAction.jsp" />
     </body>
+
+    <script>
+      const getCep = (userId) => {
+        const icep = document.getElementById("cep").value
+        console.log(icep, userId);
+        if (icep) {
+          document.location.href = "/user/cep/" + icep + "/" + userId
+        }
+      }
+    </script>
 
     </html>

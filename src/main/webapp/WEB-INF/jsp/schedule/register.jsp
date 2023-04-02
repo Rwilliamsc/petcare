@@ -57,7 +57,7 @@
                             <div class="row">
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
-                                  <select class="form-select" name="service.id" id="serv">
+                                  <select class="form-select" name="service" id="serv">
                                     <option selected>Selecione o Serviço</option>
                                     <c:forEach var="service" items="${services}">
                                       <option value="${service.id}">${service.name}</option>
@@ -68,7 +68,7 @@
                               </div>
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
-                                  <select class="form-select" name="pet.id" id="pet.id">
+                                  <select class="form-select" name="pet" id="pet.id">
                                     <option selected>Selecione um Veterinário</option>
                                     <c:forEach var="pet" items="${pets}">
                                       <option value="${pet.id}">${pet.name}</option>

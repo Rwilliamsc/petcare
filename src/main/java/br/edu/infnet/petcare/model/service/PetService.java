@@ -3,6 +3,8 @@ package br.edu.infnet.petcare.model.service;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.petcare.model.domain.Pet;
@@ -20,10 +22,10 @@ public class PetService {
   }
 
   public Collection<Pet> list() {
-      return (Collection<Pet>) petRepository.findAll();
+      return (Collection<Pet>) petRepository.getList(Sort.by(Direction.ASC, "name"));
   }
   public Collection<Pet> list(User user) {
-      return (Collection<Pet>) petRepository.getByuserId(user.getId());
+      return (Collection<Pet>) petRepository.getByuserId(user.getId(), Sort.by(Direction.ASC, "name"));
   }
 
   public Pet getById(int key) {
@@ -31,7 +33,7 @@ public class PetService {
   }
   
   public Pet update(int key, Pet pet) {
-    return pet; //petRepository.update(key, pet);
+    return petRepository.save(pet);
   }
 
   public void remove(int key) {

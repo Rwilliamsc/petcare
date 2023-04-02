@@ -25,8 +25,13 @@ public class ScheduleController {
     private UserService userService;
 
     @GetMapping("/schedule")
-    public String listScreen(Model model) {
-        model.addAttribute("schedules", scheduleService.list());
+    public String listScreen(Model model,@SessionAttribute("sessionUser") User user) {
+    	 if(user.getType().equalsIgnoreCase("ADMINISTRATOR")){
+    		 model.addAttribute("schedules", scheduleService.list());
+         }else {
+        	 model.addAttribute("schedules", scheduleService.getByUser(user.getId()));
+         }
+    	 
         return "schedule/list";
     }
 
@@ -39,10 +44,15 @@ public class ScheduleController {
     }
 
     @PostMapping("/schedule")
-    public String create(Schedule schedule) {
+    public String create(Schedule schedule,@SessionAttribute("sessionUser") User user) {
+    	
+    	schedule.setVet(schedule.getService().getVet());
+    	schedule.setDate(schedule.getService().getAvailableDate());
+    	schedule.setUser(user);
+    	
         Schedule sched = scheduleService.create(schedule);
         if (sched != null){
-            return "redirect:/schedule/list";
+            return "redirect:/schedule";
         }
         return "schedule/register";
     }

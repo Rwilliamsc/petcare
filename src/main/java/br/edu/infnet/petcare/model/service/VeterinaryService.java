@@ -3,6 +3,8 @@ package br.edu.infnet.petcare.model.service;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.petcare.model.domain.Veterinary;
@@ -19,7 +21,7 @@ public class VeterinaryService {
   }
 
   public Collection<Veterinary> list() {
-      return (Collection<Veterinary>)veterinaryRepository.findAll();
+      return (Collection<Veterinary>)veterinaryRepository.getList(Sort.by(Direction.ASC, "name"));
   }
 
   public Veterinary getById(int key) {
@@ -27,7 +29,7 @@ public class VeterinaryService {
   }
 
   public Veterinary update(int key, Veterinary veterinary) {
-    return veterinary;//veterinaryRepository.update(key, veterinary);
+    return veterinaryRepository.save(veterinary);
   }
 
   public void remove(int key) {

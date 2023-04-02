@@ -19,13 +19,13 @@ public class Schedule {
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "userId")
     private User user;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "petId")
     private Pet pet;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "vetId")
     private Veterinary vet;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "serviceId")
     private Services service;
 

@@ -2,6 +2,7 @@ package br.edu.infnet.petcare.model.interfaces;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -16,4 +17,7 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
 
 	@Query("from Appointment a where a.vet.id = :vetId")
 	List<Appointment> getByVetId(Integer vetId);
+
+	@Query("from Appointment")
+	List<Appointment> getList(Sort sort);
 }

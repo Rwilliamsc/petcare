@@ -2,9 +2,11 @@ package br.edu.infnet.petcare.model.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User extends Person{
@@ -17,8 +19,11 @@ public class User extends Person{
     private List<Pet> pets;
     @OneToMany
     @JoinColumn(name = "userId")
-	private List<Schedule> schedule;
-   
+    private List<Schedule> schedule;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+
     public User() {}
    
     public User(String name, String cpf, String email, String password) {
@@ -49,6 +54,15 @@ public class User extends Person{
         this.password = password;
         this.nickName = nickName;
         this.type = type;
+    }
+
+    public User(String email, String password, String name, String familyName, String nickName, String cpf, String status, String type, Address address) {
+        super(name, familyName, cpf, status);
+        this.email = email;
+        this.password = password;
+        this.nickName = nickName;
+        this.type = type;
+        this.address = address;
     }
 
     public User(String email, String password) {
@@ -104,6 +118,14 @@ public class User extends Person{
 
     public void setSchedule(List<Schedule> schedule) {
         this.schedule = schedule;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
