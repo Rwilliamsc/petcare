@@ -1,15 +1,12 @@
 package br.edu.infnet.petcare.controller;
 
-import br.edu.infnet.petcare.model.domain.Services;
 import br.edu.infnet.petcare.model.service.ServicesService;
-import br.edu.infnet.petcare.model.service.VeterinaryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ServicesControlle {
