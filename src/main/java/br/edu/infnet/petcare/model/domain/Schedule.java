@@ -26,10 +26,10 @@ public class Schedule {
     @JoinColumn(name = "vetId")
     private Veterinary vet;
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "serviceId")
     private Services service;
 
-    public Schedule(){ }
+    public Schedule() {
+    }
 
     public int getId() {
         return id;
@@ -89,6 +89,7 @@ public class Schedule {
 
     @Override
     public String toString() {
-        return "Agendamento: [id= " + this.getId() + ", Guardian= " + this.user.getFullName() + ", Pet= " + this.pet.getName() + " ]";
+        return "Agendamento: [id= " + this.getId() + ", Guardian= " + this.user.getFullName() + ", Pet= "
+                + this.pet.getName() + " ]";
     }
 }

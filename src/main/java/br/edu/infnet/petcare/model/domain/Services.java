@@ -12,26 +12,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Services {
     @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id                  = 0;
-    private String name             = "";
-    private String description      = "";
-    private String availableDate    = "";
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id = 0;
+    private String name = "";
+    private String description = "";
+    private String availableDate = "";
     @ManyToOne
-	@JoinColumn(name = "vetId")
+    @JoinColumn(name = "vetId")
     private Veterinary vet;
-    @OneToMany
-    @JoinColumn(name = "serviceId")
-	private List<Schedule> schedule;
+    @OneToMany(mappedBy = "service")
+    private List<Schedule> schedules;
 
-    public Services(){}
+    public Services() {
+    }
 
-    public Services (String name,String description,String availableDate){
+    public Services(String name, String description, String availableDate) {
         this.name = name;
         this.description = description;
         this.availableDate = availableDate;
@@ -61,7 +60,6 @@ public abstract class Services {
         this.availableDate = availableDate;
     }
 
-
     public Veterinary getVet() {
         return vet;
     }
@@ -78,5 +76,12 @@ public abstract class Services {
         this.id = id;
     }
 
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
+    }
 
 }

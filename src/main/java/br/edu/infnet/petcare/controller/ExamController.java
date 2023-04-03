@@ -42,7 +42,7 @@ public class ExamController {
     @PostMapping("/exam")
     public String create(Exam exam) {
         Exam service = examService.create(exam);
-        if (service != null){
+        if (service != null) {
             msg = "Registro criado com sucesso.";
             typeAlert = "success";
             return "redirect:/exam";
@@ -61,7 +61,6 @@ public class ExamController {
     @PostMapping(value = "/exam/edit/{id}")
     public String edit(Exam exam) {
         examService.update(exam.getId(), exam);
-
         return "redirect:/exam";
     }
 
@@ -77,7 +76,7 @@ public class ExamController {
             typeAlert = "danger";
             return "redirect:/exam";
         }
-        
+
     }
 
 }

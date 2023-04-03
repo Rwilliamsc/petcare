@@ -35,6 +35,8 @@ public class LoginController {
             model.addAttribute("typeAlert", "success");
             return "home/home";
         }
+        model.addAttribute("msg", "Login e Senha inválido! Tente novamente.");
+        model.addAttribute("typeAlert", "warning");
         return "login";
     }
 

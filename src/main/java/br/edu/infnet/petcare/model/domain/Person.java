@@ -8,28 +8,29 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class Person {
     @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id              = 0;
-    private String name         = "";
-    private String familyName   = "";
-    private String cpf          = "";
-    private String status       = "";
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id = 0;
+    private String name = "";
+    private String familyName = "";
+    private String cpf = "";
+    private String status = "ACTIVE";
 
-    public Person() {}
+    public Person() {
+    }
 
     public Person(String name, String cpf) {
         this.name = name;
         this.cpf = cpf;
     }
 
-    public Person (String name, String familyName, String cpf, String status) {
+    public Person(String name, String familyName, String cpf, String status) {
         this.name = name;
         this.familyName = familyName;
         this.cpf = cpf;
         this.status = status;
     }
-    
-    public Person (String name, String familyName, String cpf, String status, int id) {
+
+    public Person(String name, String familyName, String cpf, String status, int id) {
         this.name = name;
         this.familyName = familyName;
         this.cpf = cpf;
@@ -61,7 +62,6 @@ public abstract class Person {
         this.cpf = cpf;
     }
 
-
     public String getStatus() {
         return status;
     }
@@ -69,6 +69,7 @@ public abstract class Person {
     public void setStatus(String status) {
         this.status = status;
     }
+
     public int getId() {
         return id;
     }
@@ -85,6 +86,5 @@ public abstract class Person {
 
         return fullName;
     }
-
 
 }

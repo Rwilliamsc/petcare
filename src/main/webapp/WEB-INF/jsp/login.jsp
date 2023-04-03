@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
         <!DOCTYPE html>
         <html>
@@ -27,6 +28,7 @@
 
         <body>
 
+            <c:import url="/WEB-INF/jsp/menu/toast.jsp" />
             <section class="vh-100">
                 <div class="container py-5 h-100">
                     <div class="row d-flex justify-content-center align-items-center h-100">

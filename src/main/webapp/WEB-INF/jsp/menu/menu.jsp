@@ -372,7 +372,7 @@
               <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-              <li><a class="link_name" href="#">Serviços</a></li>
+              <li><a class="link_name" href="/services">Serviços</a></li>
               <li><a href="/appointment">Consultas</a></li>
               <li><a href="/surgery">Cirurgias</a></li>
               <li><a href="/exam">Exames</a></li>

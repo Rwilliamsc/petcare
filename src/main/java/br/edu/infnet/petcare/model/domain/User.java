@@ -9,38 +9,41 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class User extends Person{
-    private String email    = "";
+public class User extends Person {
+    private String email = "";
     private String password = "";
     private String nickName = "";
-    private String type     = "";
-    @OneToMany
+    private String type = "USER";
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "userId")
     private List<Pet> pets;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "userId")
     private List<Schedule> schedule;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
-    public User() {}
-   
+    public User() {
+    }
+
     public User(String name, String cpf, String email, String password) {
         super(name, cpf);
         this.email = email;
         this.password = password;
     }
 
-    public User(String email, String password, String name, String familyName, String nickName, String cpf, String status) {
+    public User(String email, String password, String name, String familyName, String nickName, String cpf,
+            String status) {
         super(name, familyName, cpf, status);
         this.email = email;
         this.password = password;
         this.nickName = nickName;
         this.type = "USER";
     }
-    
-    public User(String email, String password, String name, String familyName, String nickName, String cpf, String status, int id) {
+
+    public User(String email, String password, String name, String familyName, String nickName, String cpf,
+            String status, int id) {
         super(name, familyName, cpf, status, id);
         this.email = email;
         this.password = password;
@@ -48,7 +51,8 @@ public class User extends Person{
         this.type = "USER";
     }
 
-    public User(String email, String password, String name, String familyName, String nickName, String cpf, String status, String type) {
+    public User(String email, String password, String name, String familyName, String nickName, String cpf,
+            String status, String type) {
         super(name, familyName, cpf, status);
         this.email = email;
         this.password = password;
@@ -56,7 +60,8 @@ public class User extends Person{
         this.type = type;
     }
 
-    public User(String email, String password, String name, String familyName, String nickName, String cpf, String status, String type, Address address) {
+    public User(String email, String password, String name, String familyName, String nickName, String cpf,
+            String status, String type, Address address) {
         super(name, familyName, cpf, status);
         this.email = email;
         this.password = password;
@@ -69,7 +74,6 @@ public class User extends Person{
         super();
         this.email = email;
         this.password = password;
-
 
     }
 
@@ -92,6 +96,7 @@ public class User extends Person{
     public String getType() {
         return type;
     }
+
     public void setType(String type) {
         this.type = type;
     }
