@@ -73,6 +73,7 @@ public class UserController {
     public String edit(@PathVariable Integer id, @SessionAttribute("sessionUser") User sessionUser, User user) {
         User bUser = userService.getById(id);
         user.setPets(bUser.getPets());
+        user.setSchedule(bUser.getSchedule());
         userService.update(user.getId(), user);
 
         msg = "Usuário atualizado com sucesso.";
