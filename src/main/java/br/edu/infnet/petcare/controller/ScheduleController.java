@@ -5,7 +5,6 @@ import br.edu.infnet.petcare.model.domain.User;
 import br.edu.infnet.petcare.model.service.ScheduleService;
 import br.edu.infnet.petcare.model.service.ServicesService;
 import br.edu.infnet.petcare.model.service.UserService;
-import br.edu.infnet.petcare.model.service.VeterinaryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +23,6 @@ public class ScheduleController {
     private ServicesService servicesService;
     @Autowired
     private UserService userService;
-    @Autowired
-    private VeterinaryService veterinaryService;
 
     private String msg;
     private String typeAlert;
