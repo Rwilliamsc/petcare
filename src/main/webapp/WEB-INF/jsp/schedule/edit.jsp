@@ -81,14 +81,13 @@
                               </div>
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
-                                  <select class="form-select" name="vet.id" id="vet.id">
-                                    <option selected>Selecione um Veterinário</option>
-                                    <c:forEach var="vet" items="${veterinaries}">
-                                      <option value="${vet.id}" selected="${surgery.vet.id == vet.id }">${vet.name}
-                                      </option>
+                                  <select class="form-select" name="pet" id="pet.id">
+                                    <option selected>Selecione um pet</option>
+                                    <c:forEach var="pet" items="${pets}">
+                                      <option value="${pet.id}">${pet.name}</option>
                                     </c:forEach>
                                   </select>
-                                  <label class="form-label" for="level">Veterinário</label>
+                                  <label class="form-label" for="level">Pet</label>
                                 </div>
                               </div>
                             </div>

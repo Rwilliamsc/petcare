@@ -69,7 +69,7 @@
                               <div class="col-md-6 mb-4">
                                 <div class="form-group">
                                   <select class="form-select" name="pet" id="pet.id">
-                                    <option selected>Selecione um Veterinário</option>
+                                    <option selected>Selecione um pet</option>
                                     <c:forEach var="pet" items="${pets}">
                                       <option value="${pet.id}">${pet.name}</option>
                                     </c:forEach>

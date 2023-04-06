@@ -2,23 +2,29 @@ package br.edu.infnet.petcare.model.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Veterinary extends Person{
-    private String specialty  = "";
-    private String cfmv       = "";
-    private String prefix     = "";
-    private String phone      = "";
+public class Veterinary extends Person {
+    private String specialty = "";
+    private String cfmv = "";
+    private String prefix = "";
+    private String phone = "";
     @OneToMany
     @JoinColumn(name = "vetId")
-	private List<Schedule> schedule;
+    private List<Schedule> schedule;
+    @OneToMany(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "vetId")
+    private List<Services> services;
 
-    public Veterinary() {}
+    public Veterinary() {
+    }
 
-    public Veterinary(String name, String familyName, String prefix, String cpf, String status, String specialty, String cfmv, String phone) {
+    public Veterinary(String name, String familyName, String prefix, String cpf, String status, String specialty,
+            String cfmv, String phone) {
         super(name, familyName, cpf, status);
         this.specialty = specialty;
         this.cfmv = cfmv;
@@ -66,6 +72,14 @@ public class Veterinary extends Person{
         this.schedule = schedule;
     }
 
+    public List<Services> getServices() {
+        return services;
+    }
+
+    public void setServices(List<Services> services) {
+        this.services = services;
+    }
+
     @Override
     public String toString() {
 
@@ -73,6 +87,6 @@ public class Veterinary extends Person{
                 "Veterinário:  %s \n CFMV: %s",
                 super.getName(),
                 this.cfmv);
-              
+
     }
 }

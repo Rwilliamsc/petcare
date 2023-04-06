@@ -35,7 +35,8 @@ public class ExamController {
     }
 
     @GetMapping("/exam/register")
-    public String createScreen() {
+    public String createScreen(Model model) {
+        model.addAttribute("veterinaries", veterinaryService.list());
         return "exam/register";
     }
 
